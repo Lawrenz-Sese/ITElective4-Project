@@ -1,17 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="header">
+    <div class="holder">
+      <img src="../../assets/lawrenz.jpg" alt="" class="src">
+    </div>
+  </div>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div class="profile">
+    <h1 class="user-name">Lawrenz Sese Diestro</h1>
+    <div class="login-form">
+      <div class="form-input">
+        <ion-item>
+          <ion-input type="text" disabled="true"> Contact: 09091231234 </ion-input>
+        </ion-item>
+      </div>
+      <div class="form-input">
+        <ion-item>
+          <ion-input type="text"  disabled="true"> Email: sample@gmail.com </ion-input>
+        </ion-item>
+      </div>
+      <div class="form-input">
+        <ion-item>
+          <ion-input type="text"  disabled="true">Address: Matain, Subic</ion-input>
+        </ion-item>
+      </div>
+      <div class="form-input">
+        <ion-item>
+          <ion-input type="text"  disabled="true">Municipality: Zambales</ion-input>
+        </ion-item>
+      </div>
+    </div>
+    <div class="action-button">
+      <ion-button class="login-button" routerLink="/login">Logout</ion-button>
+      <p class="forgot" routerLink="/login">EDIT MY PROFILE</p>
+    </div>
+  </div>
+
 </ion-content>

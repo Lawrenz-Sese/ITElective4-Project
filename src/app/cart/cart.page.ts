@@ -18,7 +18,7 @@ export class CartPage implements OnInit {
       if (selected[obj.id]) {
         selected[obj.id].count++;
       } else {
-        selected[obj.id] = {...obj, count: 1};
+        selected[obj.id] = { ...obj, count: 1 };
       }
     }
     this.selectedItems = Object.keys(selected).map(key => selected[key])

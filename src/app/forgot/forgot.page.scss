@@ -4,12 +4,13 @@ ion-toolbar {
   --background: black;
 }
 
+
 .src{
-  width: 90%;
+  width: 80%;
   margin: auto;
   position: relative;
-  margin-top: 30px;
-  margin-left: 5px;
+  margin-top: 40px;
+  margin-left: 22px;
   // box-shadow: 5px 6px 13px 4px rgba(0,0,0,0.29);
 
   -webkit-animation-name: bounce;
@@ -158,8 +159,6 @@ ion-toolbar {
   }
 }
 
-  
-
   .heading {
     padding-left: 10px;
 
@@ -190,38 +189,10 @@ ion-toolbar {
       padding-left: 0;
     }
 
-    ion-icon {
-      position: absolute;
-      top: 21px;
-      z-index: 10000;
-      font-size: 1.5rem;
-      left: 5px;
-      color: #425c5a;
-    }
-
-    .icon2 {
-      position: absolute;
-      top: 68px;
-      z-index: 10000;
-      font-size: 1.5rem;
-      left: 5px;
-      color: #425c5a;
-    }
-
-    ion-label {
-      position: absolute;
-      margin-left: 35px;
-      font-weight: bolder;
-      font-size: 0.8rem;
-      top: 3px;
-      color: black;
-      font-family: 'Poppins', sans-serif;
-    }
 
     ion-input {
       font-size: 0.9rem;
-      --padding-start: 25px;
-      --padding-top: 20px;
+      --padding-top: 10px;
       color: #7b7b7b;
       font-family: 'Poppins', sans-serif;
     }

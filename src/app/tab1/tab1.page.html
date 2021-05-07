@@ -1,62 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+
+  <ion-toolbar class="head" color="light">
     <ion-title>
-      Home
     </ion-title>
-    <!-- <ion-buttons slot="end">
-      <ion-button (click)="openCart()">
-        <ion-badge *ngIf="cart.length > 0">{{cart.length}}></ion-badge>
-        <ion-icon name="cart" slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons> -->
   </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Home</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="cart"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
-  <ion-card *ngFor = "let x of cardContent">
-    <ion-card-header>
-      <ion-card-title>
-        {{x.product}}
-      </ion-card-title>
-      <ion-card-sub-title>
-        P {{x.price}}
-      </ion-card-sub-title>
-    </ion-card-header>
-    <ion-card-content>
-      <img src= {{x.img}}>
-
-      <ion-button routerLink="/login">Click me</ion-button>
-    </ion-card-content>
-  </ion-card> -->
+ 
 
 
-  <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="openCart()">
-    <ion-fab-button>
-      <ion-badge *ngIf="cart.length > 0">{{cart.length}}</ion-badge>
-      <ion-icon name="cart"></ion-icon>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="openCart()">
+    <ion-fab-button color="light">
+      <ion-badge *ngIf="cart.length > 0" color="light">{{cart.length}}</ion-badge>
+      <ion-icon name="cart" style="color: white;"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <div *ngFor="let cat of items" class="category-block">
     <ion-row no-padding class="category-banner">
-      <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
+      <ion-col text-left button  align-self-center>
         {{cat.category}}
       </ion-col>
     </ion-row>
   <ion-slides [options]="sliderConfig">
     <ion-slide *ngFor="let product of cat.products">
-      <div *ngIf="cat.expanded">
+      <div>
       <ion-card>
         <ion-card-header>
           <ion-card-title>

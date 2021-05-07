@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.header {
+  height: 25vh;
+  width: 100%;
+  max-width: 500px;
+  background: #66a389;;
+  right: 0;
+  left: 0;
+  top: 0;
+  position: relative;
+  margin: auto;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.holder {
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  overflow: hidden;
+  background-color: whitesmoke;
+  margin-top: 80px;
+  margin-left: 75px;
+  position: absolute;
+}
+
+.src {
+  position: relative;
+  width: 100%;
+}
+
+.profile {
+  width: 100%;
+  height: 50vh;
+  position: relative;
+  margin-top: 70px;
+  justify-content: center;
+  text-align: center;
+}
+
+.user-name {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.login-form {
+  position: relative;
+  margin-bottom: 10px;
+
+  ion-item:part(native) {
+    padding-left: 0;
+  }
+
+
+  ion-input {
+    font-size: 0.8rem;
+    --padding-top: 8px;
+    color: #7b7b7b;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+.action-buttons {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-button {
+  --background: #245c5a;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.forgot {
+  margin-top: 10px;
+  font-size: .8rem;
+  color: #7b7b7b;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+}
