@@ -5,27 +5,27 @@
     </div>
   </div>
 
-  <div class="profile">
-    <h1 class="user-name">Lawrenz Sese Diestro</h1>
+  <div class="profile" *ngFor="let users of users">
+    <h1 class="user-name">{{ users.user_name +' '+ users.user_fname }}</h1>
     <div class="login-form">
       <div class="form-input">
         <ion-item>
-          <ion-input type="text" disabled="true"> Contact: 09091231234 </ion-input>
+          <ion-input type="text" disabled="true"> Contact: {{ users.user_contact }} </ion-input>
         </ion-item>
       </div>
       <div class="form-input">
         <ion-item>
-          <ion-input type="text"  disabled="true"> Email: sample@gmail.com </ion-input>
+          <ion-input type="text"  disabled="true"> Email: {{ users.user_email }} </ion-input>
         </ion-item>
       </div>
       <div class="form-input">
         <ion-item>
-          <ion-input type="text"  disabled="true">Address: Matain, Subic</ion-input>
+          <ion-input type="text"  disabled="true">Address: {{ users.user_address }}</ion-input>
         </ion-item>
       </div>
       <div class="form-input">
         <ion-item>
-          <ion-input type="text"  disabled="true">Municipality: Zambales</ion-input>
+          <ion-input type="text"  disabled="true">Contact: {{users.user_contact}}</ion-input>
         </ion-item>
       </div>
     </div>

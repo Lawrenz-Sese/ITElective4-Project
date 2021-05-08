@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,7 +12,16 @@ export class LoginPage implements OnInit {
 
 
 
-  constructor() { }
+  constructor( public route: Router ) { }
+
+  loginUser(){
+    this.route.navigate(['/tabs']);
+
+    Swal.fire({
+      icon: 'success',
+      text: 'Welcome, Lawrenz!',
+    })
+  }
 
   ngOnInit() {
   }
