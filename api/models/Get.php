@@ -33,6 +33,29 @@ class Get{
         return $this->gm->sendPayload($payload, $remarks, $message, $code);
     }
 
+    public function pullCart($filterData){
+        $code = 401;
+        $payload = null;
+        $remarks = "failed";
+        $message = "Unable to retrieve data";
+
+        $sql = "SELECT * FROM tbl_cart";
+
+        if($filterData!=null){
+            $sql.=" WHERE cart_id=".$filterData;
+        }
+
+        $res = $this->gm->generalQuery($sql);
+
+        if($res['code']==200) {
+            $code = 200;
+            $payload = $res['data'];
+            $remarks = "success";
+            $message = "Successfully retrieved data";
+        }
+        return $this->gm->sendPayload($payload, $remarks, $message, $code);
+    }
+
     public function pullUser($filterData){
         $code = 401;
         $payload = null;
@@ -55,6 +78,7 @@ class Get{
         }
         return $this->gm->sendPayload($payload, $remarks, $message, $code);
     }
+
 
 
 }

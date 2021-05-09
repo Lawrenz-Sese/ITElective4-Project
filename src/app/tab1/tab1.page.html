@@ -1,44 +1,49 @@
-
-  <ion-toolbar class="head" color="light">
-    <ion-title>
-    </ion-title>
-  </ion-toolbar>
+<ion-toolbar class="head" color="light">
+  <ion-title>
+  </ion-title>
+</ion-toolbar>
 
 
 <ion-content [fullscreen]="true">
- 
+
 
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="openCart()">
     <ion-fab-button color="light">
-      <ion-badge *ngIf="cart.length > 0" color="light">{{cart.length}}</ion-badge>
+      <ion-badge color="light"></ion-badge>
       <ion-icon name="cart" style="color: white;"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <div *ngFor="let cat of items" class="category-block">
+
+  <div class="category-block">
     <ion-row no-padding class="category-banner">
-      <ion-col text-left button  align-self-center>
-        {{cat.category}}
+      <ion-col text-left button align-self-center>
+        THIS IS CATEGORY
       </ion-col>
     </ion-row>
-  <ion-slides [options]="sliderConfig">
-    <ion-slide *ngFor="let product of cat.products">
-      <div>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>
-            {{ product.name }} - ${{ product.price }}
-          </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <img src="../../assets/cart.png" alt="" class="src">
-          <ion-button expand="full" (click)="addToCart(product)"> Add to Cart</ion-button>
-        </ion-card-content>
-      </ion-card>
-    </div>
-    </ion-slide>
+    <ion-slides [options]="sliderConfig">
+      <ion-slide *ngFor="let products of products">
+        <div>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>
+                <p>
+                  {{ products.pname }}
+                </p>
+                <span>
+                  - {{ products.pquant }}
+                </span>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <img src="../../assets/cart.png" alt="" class="src">
+              <ion-button expand="full" (click)="addToCart(products); addCart($event);"> Add to Cart</ion-button>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-slide>
 
-  </ion-slides>
-</div>
+    </ion-slides>
+  </div>
 </ion-content>

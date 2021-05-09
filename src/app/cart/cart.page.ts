@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
+import { Router } from '@angular/router';
+import { DataService } from "src/app/service/data.service";
+import { TemplateRef, ViewChild } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cart',
@@ -9,20 +13,30 @@ import { CartService } from '../cart.service';
 export class CartPage implements OnInit {
   selectedItems = [];
   total = 0;
-  constructor(private cartService: CartService) { }
+
+  cart: any;
+  constructor(private router: Router, private ds: DataService) { }
+
+  
+  @ViewChild('content') callAPIDialog: TemplateRef<any>;
 
   ngOnInit() {
-    let items = this.cartService.getCart();
-    let selected = {};
-    for (let obj of items) {
-      if (selected[obj.id]) {
-        selected[obj.id].count++;
-      } else {
-        selected[obj.id] = { ...obj, count: 1 };
-      }
-    }
-    this.selectedItems = Object.keys(selected).map(key => selected[key])
-    this.total = this.selectedItems.reduce((a, b) => a + (b.count * b.price), 0);
-  }
+    this.pullCart();
+}
 
+
+pullCart(){
+  this.ds.sendApiRequest("cart", null).subscribe(data => {
+    this.cart = data.payload;
+  })
+
+  console.log("cart");
+}
+
+async delCart(e) {
+
+  this.ds.sendApiRequest("delProduct", JSON.parse(JSON.stringify(e))).subscribe(data => {
+    this.pullCart();
+  });
+}
 }
