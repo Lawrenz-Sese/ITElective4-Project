@@ -12,14 +12,13 @@ import Swal from 'sweetalert2';
 })
 export class Tab1Page implements OnInit {
 
-  // cart = [];
-  // items = [];
-
+  // Configuration of slider
   sliderConfig = {
     spaceBetween: 7,
     centeredSlides: true,
-    slidesPerView: 1.6
+    slidesPerView: 1.2
   }
+  cart: any;
   
 
   constructor( private cartService: CartService, private router: Router, private ds: DataService) {}
@@ -30,6 +29,7 @@ export class Tab1Page implements OnInit {
   pname: any;
   pdesc: any;
   pquant: any;
+  users:any;
 
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
   
@@ -37,8 +37,23 @@ export class Tab1Page implements OnInit {
     // this.cart = this.cartService.getCart();
     // this.items = this.cartService.getProducts();
     this.pullProducts();
+    this.pullCart();
+    this.pullUsers();
   }
 
+  // Function that will pull user
+  pullUsers() {
+    this.ds.sendApiRequest("users", null).subscribe(data => {
+      this.users = data.payload;
+    })
+  }
+  // Function that wil pull cart items
+  pullCart(){
+    this.ds.sendApiRequest("cart", null).subscribe(data => {
+      this.cart = data.payload;
+    })
+  }
+  //Function that will pull products items
   pullProducts(){
     this.ds.sendApiRequest("products", null).subscribe(data => {
       this.products = data.payload;
@@ -46,13 +61,12 @@ export class Tab1Page implements OnInit {
   }
 
 
-
-  
-
+// Add to cart function from pulled data, one item will insert per click.
   addToCart  = (products) => {
-
+    
     this.prodInfo.cart_pname = products.pname;
     this.prodInfo.cart_pquant = products.pquant;
+    this.prodInfo.cart_pdesc = products.pdesc;
 
     this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
       this.pullProducts();
@@ -66,12 +80,5 @@ export class Tab1Page implements OnInit {
     this.router.navigate(['/cart'])
 
     console.log(this.prodInfo);
-  }
-
-  addCart(e){
-    
-  }
-  openCart(){
-    this.router.navigate(['/cart']);
   }
 }

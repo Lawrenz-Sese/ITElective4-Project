@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { DataService } from "src/app/service/data.service";
 import { TemplateRef, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
+import { ModalController } from '@ionic/angular';
+import { CartCheckoutPage } from '../cart-checkout/cart-checkout.page';
 
 @Component({
   selector: 'app-cart',
@@ -13,30 +15,65 @@ import Swal from 'sweetalert2';
 export class CartPage implements OnInit {
   selectedItems = [];
   total = 0;
-
   cart: any;
-  constructor(private router: Router, private ds: DataService) { }
+  currentItems: any;
+  cartinfo: any = {};
+  constructor(private router: Router, private ds: DataService, private modalCtrl: ModalController) {
 
-  
+  }
+
+
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
 
   ngOnInit() {
     this.pullCart();
-}
+  }
 
+  // Function that will serve as trigger to open a modal and pass the data
+  async openModal(cart) {
 
-pullCart(){
-  this.ds.sendApiRequest("cart", null).subscribe(data => {
-    this.cart = data.payload;
-  })
+    const modal = await this.modalCtrl.create({
+      component: CartCheckoutPage,
+      componentProps: {
+        cart: cart.cart_id,
+        cartdesc: cart.cart_pdesc,
+        name: cart.cart_pname,
+        quant: cart.cart_pquant,
+      }
+    });
+    console.log(cart);
+    await modal.present();
+  }
 
-  console.log("cart");
-}
+  // Function that will pull all your cart items from data base
+  pullCart() {
+    this.ds.sendApiRequest("cart", null).subscribe(data => {
+      this.cart = data.payload;
+      console.log(this.cart);
+    })
+  }
 
-async delCart(e) {
-
-  this.ds.sendApiRequest("delProduct", JSON.parse(JSON.stringify(e))).subscribe(data => {
-    this.pullCart();
-  });
-}
+  // Function that will delete the item on cart list 
+  async delCarts(e) {
+    this.cartinfo.cart_id = e;
+    Swal.fire({
+      title: 'Remove item?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.sendApiRequest("delCarts", JSON.parse(JSON.stringify(this.cartinfo))).subscribe(data => {
+          this.pullCart();
+        });
+        Swal.fire(
+          'Deleted!',
+          'Item has been removed.',
+          'success'
+        )
+      }
+    })
+  }
 }

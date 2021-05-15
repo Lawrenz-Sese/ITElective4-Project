@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'forgot',
     loadChildren: () => import('./forgot/forgot.module').then( m => m.ForgotPageModule)
   },
+  {
+    path: 'cart-checkout',
+    loadChildren: () => import('./cart-checkout/cart-checkout.module').then( m => m.CartCheckoutPageModule)
+  },
 ];
 @NgModule({
   imports: [

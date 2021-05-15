@@ -1,5 +1,7 @@
 <ion-toolbar class="head" color="light">
-  <ion-title>
+  <ion-title *ngFor="let users of users">
+    <h1>Good day, {{users.user_name}}!</h1>
+    <p class="h12">Happy shopping, here at MARK-IT</p>
   </ion-title>
 </ion-toolbar>
 
@@ -15,11 +17,11 @@
     </ion-fab-button>
   </ion-fab>
 
-
+  <br>
   <div class="category-block">
     <ion-row no-padding class="category-banner">
-      <ion-col text-left button align-self-center>
-        THIS IS CATEGORY
+      <ion-col style="text-align:center">
+        List of Products
       </ion-col>
     </ion-row>
     <ion-slides [options]="sliderConfig">
@@ -28,22 +30,27 @@
           <ion-card>
             <ion-card-header>
               <ion-card-title>
-                <p>
+                <p class="product-name">
                   {{ products.pname }}
                 </p>
-                <span>
-                  - {{ products.pquant }}
+                <hr style="border: 0;
+                height: 0;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
+                <span class="product-desc">
+                  ₱{{ products.pquant }} per {{ products.pdesc}}
                 </span>
               </ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <img src="../../assets/cart.png" alt="" class="src">
-              <ion-button expand="full" (click)="addToCart(products); addCart($event);"> Add to Cart</ion-button>
+              <img src="./assets/project-logo/logo1.png" alt="" class="src">
+              <ion-button expand="full" (click)="addToCart(products); addCart($event);" color="light">
+                <ion-icon name="cart" style="color: white; font-size: 20px;"></ion-icon>
+              </ion-button>
             </ion-card-content>
           </ion-card>
         </div>
       </ion-slide>
-
     </ion-slides>
   </div>
 </ion-content>

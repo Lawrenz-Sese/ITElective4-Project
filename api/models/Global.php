@@ -8,19 +8,28 @@
 
 		
 		// READ
-		public function generalQuery($sql) {
-			$data = array(); $errmsg = ""; $code = 0;
-
+		public function generalQuery($sql, $err) {
+			$data = array();
+			$errmsg = "";
+			$code = 0;
 			try {
-				if ($res = $this->pdo->query($sql)->fetchALL()) {
-					foreach ($res as $rec) { array_push($data, $rec);}
-					$res = null; $code = 200;
+				if($result = $this->pdo->query($sql)->fetchAll()){
+					foreach ($result as $record)
+						array_push($data, $record);
+					$result = null;
+					$code = 200;
+					return array("code"=>$code, "data"=>$data);
+				} else {
+					$errmsg = $err;
+					$code = 404;
 				}
-			} catch (\PDOExeption $e) {
-				$errmsg = $e->getMessage(); $code = 401;
+			} catch (\PDOException $e) {
+				$errmsg = $e->getMessage();
+				$code = 403;
 			}
-			return array("code"=>$code, "data"=>$data, "errmsg"=>$errmsg);
+			return array("code"=>$code, "errmsg"=>$errmsg);
 		}
+		
 
 
 		// INSERT 
@@ -95,19 +104,25 @@
 
 
 		//DELETE
-		public function delete($table, $data){
+		public function delete($table, $data, $condition){
 
-			$sql = "DELETE FROM $table  WHERE pid = $data";
+			$sql = "DELETE FROM $table WHERE $condition";
+
 		
-			$data = array(); $code = 0; $msg= ""; $remarks = "";
+			$data = array(); $code = 0; $errmsg= ""; $remarks = "";
 			try {
+		
 				if ($res = $this->pdo->query($sql)->fetchAll()) {
 					foreach ($res as $rec) { array_push($data, $rec);}
 					$res = null; $code = 200; $msg = "Successfully deleted feedback"; $remarks = "success";
+					return array("code"=>200, "remarks"=>"success");
 				}
 			} catch (\PDOException $e) {
-				$msg = $e->getMessage(); $code = 401; $remarks = "failed";
+				$errmsg = $e->getMessage();
+				$code = 403;
 			}
+			
+			return array("code"=>$code, "errmsg"=>$errmsg);
 		}
 
 		

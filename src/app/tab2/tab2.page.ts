@@ -55,11 +55,27 @@ export class Tab2Page {
     this.pquant = '';
   }
 
-  async delProduct(e) {
+  delProduct(e) {
 
-    this.ds.sendApiRequest("delProduct", JSON.parse(JSON.stringify(e))).subscribe(data => {
-      this.pullProducts();
-    });
+    Swal.fire({
+      title: 'Remove item?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.sendApiRequest("delProduct", { "pid": e }).subscribe(data => {
+        });
+        Swal.fire(
+          'Deleted!',
+          'Item has been removed.',
+          'success'
+        )
+        this.pullProducts();
+      }
+    })
   }
 
 
