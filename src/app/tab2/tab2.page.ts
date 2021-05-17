@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class Tab2Page {
   alertCtrl: any;
+  productinfo: any;
 
   constructor(private ds: DataService, public route: Router) { }
 
@@ -55,8 +56,31 @@ export class Tab2Page {
     this.pquant = '';
   }
 
-  delProduct(e) {
+  // delProduct(e) {
 
+  //   Swal.fire({
+  //     title: 'Remove item?',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Yes'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       this.ds.sendApiRequest("delProduct", { "pid": e }).subscribe(data => {
+  //       });
+  //       Swal.fire(
+  //         'Deleted!',
+  //         'Item has been removed.',
+  //         'success'
+  //       )
+  //       this.pullProducts();
+  //     }
+  //   })
+  // }
+
+  async delProduct(e) {
+    this.prodInfo.pid = e;
     Swal.fire({
       title: 'Remove item?',
       icon: 'warning',
@@ -66,14 +90,14 @@ export class Tab2Page {
       confirmButtonText: 'Yes'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.ds.sendApiRequest("delProduct", { "pid": e }).subscribe(data => {
+        this.ds.sendApiRequest("delProduct", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
+          this.pullProducts();
         });
         Swal.fire(
           'Deleted!',
           'Item has been removed.',
           'success'
         )
-        this.pullProducts();
       }
     })
   }

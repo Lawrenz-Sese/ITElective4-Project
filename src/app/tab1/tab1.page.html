@@ -44,8 +44,11 @@
             </ion-card-header>
             <ion-card-content>
               <img src="./assets/project-logo/logo1.png" alt="" class="src">
-              <ion-button expand="full" (click)="addToCart(products); addCart($event);" color="light">
-                <ion-icon name="cart" style="color: white; font-size: 20px;"></ion-icon>
+              <ion-button  (click)="addToCart(products); addCart($event);" color="light">
+                <ion-icon name="cart" style="color: white; font-size: 20px;"></ion-icon><span class="action">Add</span>
+              </ion-button>
+              <ion-button  (click)="addToCart(products); addCart($event);" color="light">
+                <ion-icon name="cash" style="color: white;"></ion-icon><span class="action">Buy</span>
               </ion-button>
             </ion-card-content>
           </ion-card>
