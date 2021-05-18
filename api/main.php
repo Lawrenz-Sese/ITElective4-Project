@@ -69,6 +69,11 @@
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($auth->regUser($d), JSON_PRETTY_PRINT);
 				break;
+
+				case 'loginUser':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($auth->loginUser($d), JSON_PRETTY_PRINT);
+				break;
 			}
 		break;
 

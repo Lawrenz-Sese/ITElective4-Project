@@ -100,46 +100,41 @@
         }
 
 
-        // public function login($param){
-		// 	$un = $param->param1;
-		// 	$pw = $param->param2;
-		// 	$payload = "";
-		// 	$remarks = "";
-		// 	$message = "";
-		// 	$code = 403;
+        public function loginUser($dt){
+			$payload = $dt;
+			$user_email = $dt->user_email;
+			$user_password = $dt->user_password;
+			$payload = "";
+			$remarks = "";
+			$message = "";
+			$code = 403;
 
-		// 	$sql = "SELECT * FROM tbl_users WHERE user_uname='$un' LIMIT 1";
-		// 	$res = $this->gm->generalQuery($sql, "Incorrect username or password");
-		// 	if($res['code'] == 200) {
-		// 		if($this->pword_check($pw, $res['data'][0]['user_pword'])) {
-        //             $uid = $res['data'][0]['user_Id'];
-		// 			$ue = $res['data'][0]['user_email'];
-		// 			$fn = $res['data'][0]['user_FName'];
-		// 			$un = $res['data'][0]['user_uname'];
-        //             $ct = $res['data'][0]['user_contact'];
-        //             $sn = $res['data'][0]['user_storeName'];
-		// 			$tk = $this->generateToken($uid, $un, $fn);
+			$sql = "SELECT * FROM tbl_user WHERE user_email='$user_email' LIMIT 1";
+			$res = $this->gm->generalQuery($sql, "Incorrect username or password");
+			if($res['code'] == 200) {
+				if($this->pword_check($user_password, $res['data'][0]['user_password'])) {
+					
+				
+					$user_names =$res['data'][0]['user_names'];
+					$user_id = $res['data'][0]['user_id'];
+				
 
-		// 			$sql = "UPDATE tbl_users SET token='$tk' WHERE user_Id='$uc'";
-		// 			$this->gm->generalQuery($sql, "");
-
-		// 			$code = 200;
-		// 			$remarks = "success";
-		// 			$message = "Logged in successfully";
-		// 			$payload = array("id"=>$uid, "fullname"=>$fn, "key"=>$tk);
-		// 		} else {
-		// 			$payload = null; 
-		// 			$remarks = "failed"; 
-		// 			$message = "Incorrect username or password";
-		// 		}
-		// 	}	else {
-		// 		$payload = null; 
-		// 		$remarks = "failed"; 
-		// 		$message = $res['errmsg'];
-		// 	}
-		// 	return $this->gm->sendPayload($payload, $remarks, $message, $code);
-		// }
-
+					$code = 200;
+					$remarks = "success";
+					$message = "Logged in successfully";
+					$payload = array("user_id"=>$user_id, "Fullname"=>$user_names);
+				} else {
+					$payload = null; 
+					$remarks = "failed"; 
+					$message = "Incorrect username or password";
+				}
+			}	else {
+				$payload = null; 
+				$remarks = "failed"; 
+				$message = $res['errmsg'];
+			}
+			return $this->gm->sendPayload($payload, $remarks, $message, $code);
+		}
 
 
     }
