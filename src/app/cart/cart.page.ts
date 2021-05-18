@@ -23,6 +23,8 @@ export class CartPage implements OnInit {
   counterTotal: number;
   totalamounts: any;
   delivery: number;
+  cartlength: any;
+  cartCounter: number;
   constructor(private router: Router, private ds: DataService, private modalCtrl: ModalController) {
 
   }
@@ -57,6 +59,10 @@ export class CartPage implements OnInit {
       this.cart = data.payload;
       console.log(this.cart);
       this.getTotal();
+
+      for (let i = 0; i <= this.cart.length; i++) {
+        this.cartCounter = i;
+      }
     })
   }
  
@@ -66,12 +72,9 @@ export class CartPage implements OnInit {
         if (this.cart[i].cart_pquant) {
             total += this.cart[i].cart_pquant;
             this.totalamount = total;
-            this.totalamounts = Math.round(total * .12) + total;
-            this.delivery = Math.round(total * .12);
-        }
-        console.log(total);
-        
-        
+            this.totalamounts = Math.round(this.delivery + total);
+            this.delivery = this.cart.length * 3 + 50;
+        }   
     }
     return total;
 

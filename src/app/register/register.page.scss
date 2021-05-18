@@ -8,7 +8,7 @@ ion-toolbar {
   width: 70%;
   margin: auto;
   position: relative;
-  margin-top: 15px;
+  margin-top: 10px;
   margin-left: 35px;
   // box-shadow: 5px 6px 13px 4px rgba(0,0,0,0.29);
 
@@ -71,7 +71,7 @@ ion-toolbar {
 }
 
 .login-section {
-  height: 67vh;
+  height: 70vh;
   width: 100%;
   max-width: 500px;
   background: #ffffff;
@@ -190,8 +190,7 @@ ion-toolbar {
 
 
     ion-input {
-      font-size: 0.9rem;
-      --padding-top: 10px;
+      font-size: 0.8rem;
       color: #7b7b7b;
       font-family: 'Poppins', sans-serif;
     }

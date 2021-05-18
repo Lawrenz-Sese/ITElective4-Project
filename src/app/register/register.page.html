@@ -7,33 +7,38 @@
   <div class="login-section ion-padding">
     <div class="heading">
       <h1>Sign up here! </h1>
-      <p>Create new account here.</p>
+      <p>Create account here, <span routerLink="/login">have an account?</span></p>
     </div>
     <div class="login-form">
       <div class="form-input">
         <ion-item>
-          <ion-input type="text" placeholder="Full Name"></ion-input>
+          <ion-input type="text" placeholder="Full Name" [(ngModel)]="user_names"></ion-input>
         </ion-item>
       </div>
       <div class="form-input">
         <ion-item>
-          <ion-input type="number" placeholder="Contact Number"></ion-input>
+          <ion-input type="text" placeholder="Address"[(ngModel)]="user_address"></ion-input>
         </ion-item>
       </div>
       <div class="form-input">
         <ion-item>
-          <ion-input type="email" placeholder="Email"></ion-input>
+          <ion-input type="number" placeholder="Contact" [(ngModel)]="user_contact"></ion-input>
         </ion-item>
       </div>
       <div class="form-input">
         <ion-item>
-          <ion-input type="password" placeholder="Password"></ion-input>
+          <ion-input type="email" placeholder="Email" [(ngModel)]="user_email"></ion-input>
+        </ion-item>
+      </div>
+      <div class="form-input">
+        <ion-item>
+          <ion-input type="password" placeholder="Password" [(ngModel)]="user_password"></ion-input>
         </ion-item>
       </div>
     </div>
     <div class="action-button">
-      <ion-button class="login-button" routerLink="/tabs">Sign In</ion-button>
-      <p class="forgot" routerLink="/login">Have an account?</p>
+      <ion-button class="login-button" (click)="regUser()">Sign In</ion-button>
+      <!-- <p class="forgot" routerLink="/login">Have an account?</p> -->
     </div>
 
   </div>

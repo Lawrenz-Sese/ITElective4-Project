@@ -12,6 +12,9 @@
     These are the items from cart table, display with ion list.
   -->
   <ion-list>
+    <ion-list-header>
+      Cart List
+    </ion-list-header>
     <ion-item *ngFor="let cart of cart" lines="inset">
      {{ cart.cart_pdesc }} of {{ cart.cart_pname }} -  ₱{{ cart.cart_pquant }}
      <span hidden> {{ cart?.cart_id }}</span>
@@ -26,7 +29,15 @@
       </ion-label>
 
     </ion-item>
+  </ion-list>
 
+  <ion-list>
+    <ion-list-header>
+      Expenses Overview
+    </ion-list-header>
+    <ion-item>
+      Cart Items:{{ cartCounter }} total product/s.<span slot="end"></span>
+     </ion-item>
     <ion-item>
       Total Cart Products: ₱{{ totalamount }}<span slot="end"></span>
     </ion-item>

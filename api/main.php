@@ -6,7 +6,7 @@
 	$gm = new GlobalMethods($pdo);
 	$post = new Post($pdo);
 	$get = new Get($pdo);
-	// $auth = new Auth($pdo);
+	$auth = new Auth($pdo);
 
 	if (isset($_REQUEST['request'])) {
 		$req = explode('/', rtrim($_REQUEST['request'], '/'));
@@ -63,6 +63,11 @@
 				case 'delCarts':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->delCarts($d), JSON_PRETTY_PRINT);
+				break;
+
+				case 'regUser':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($auth->regUser($d), JSON_PRETTY_PRINT);
 				break;
 			}
 		break;

@@ -1,133 +1,146 @@
 <?php
 	class Auth {
-		protected $gm, $pdo;
-		private $status = array();
-		private $failed_stat = array(
-			'remarks'=>'failed',
-			'message'=>'Failed to retrieve the requested records'
-		);
-		private $success_stat = array(
-			'remarks'=>'success',
-			'message'=>'Successfully retrieved the requested records'
-		);
+		protected $gm;
+		protected $pdo;
+    
+
 		public function __construct(\PDO $pdo) {
-			$this->pdo = $pdo;
 			$this->gm = new GlobalMethods($pdo);
+			$this->pdo = $pdo;
 		}
-
-		# JWT
+		
+		########################################
+		# 	USER AUTHORIZATION RELATED METHODS
+		########################################
 		protected function generateHeader() {
-			$h = [
+			$h=[
 				"typ"=>"JWT",
-				"alg"=>"HS256",
-				"app"=>"My App",
-				"dev"=>"The Developer"
+				"alg"=>'HS256',
+				"app"=>"Tinda",
+				"dev"=>"Ramirez, Jimenez, Marchan"
 			];
-			return str_replace("=", "", base64_encode(json_encode($h)));
+			return str_replace(['+','/','='],['-','_',''], base64_encode(json_encode($h)));
 		}
 
-		protected function generatePayload($uc, $ue, $ito) {
-			$p = [
-				"uc"=>$uc,
-				"ue"=>$ue,
-				"ito"=>$ito,
-				"iby"=>"The Developer",
-				"ie"=>"thedeveloper@test.com",
-				"exp"=>date("Y-m-d H:i:s") //date_create()
+		protected function generatePayload($uid, $un, $fn) {
+			$p = [   
+				'uid'=>$uid,
+				'un'=>$un,
+				'fn'=>$fn,
+				'iby'=>'Ramirez Chris John',
+				'ie'=>'ramirez@futuredev.com',
+				'idate'=>date_create()
 			];
-			return str_replace("=", "", base64_encode(json_encode($p)));
+			return str_replace(['+','/','='],['-','_',''], base64_encode(json_encode($p)));
 		}
 
-		protected function generateToken($usercode, $useremail, $fullname) {
+		protected function generateToken($userid, $uname, $fullname) {
 			$header = $this->generateHeader();
-			$payload = $this->generatePayload($usercode, $useremail, $fullname);
-			$signature = hash_hmac("sha256", "$header.$payload", base64_encode(SECRET));
-			return "$header.$payload." .str_replace("=", "", base64_encode($signature));
+			$payload = $this->generatePayload($userid, $uname, $fullname);
+			$signature = hash_hmac('sha256', "$header.$payload", "www.gordoncollege.edu.ph");
+			return str_replace(['+','/','='],['-','_',''], base64_encode($signature));
 		}
 
-		#./JWT
-
-		public function showToken(){
-			return $this->generateToken("202010100", "202010100@test.com", "Juan Dela Cruz");
+        ########################################
+		# 	USER AUTHENTICATION RELATED METHODS
+		########################################
+		public function encrypt_password($pword) {
+			$hashFormat="$2y$10$";
+		    $saltLength=22;
+		    $salt=$this->generate_salt($saltLength);
+		    return crypt($pword,$hashFormat.$salt);
 		}
-		function checkpass($pass, $hash){
 
-			if(md5($pass) == $hash){
+
+        protected function generate_salt($len) {
+			$urs=md5(uniqid(mt_rand(), true));
+	    $b64String=base64_encode($urs);
+	    $mb64String=str_replace('+','.', $b64String);
+	    return substr($mb64String,0,$len);
+		}
+
+        public function pword_check($pword, $existingHash) {
+			$hash=crypt($pword, $existingHash);
+			if($hash===$existingHash){
 				return true;
-			}else{
-				false;
 			}
+			return false;
 		}
-	 	public function feedback_login($dt){
-			
-			$uname = $dt->uname;
-			$pword = $dt->password;
 
-			// echo($uname." ".$pword);
+        public function regUser($dt){
+			$payload = "";
+			$remarks = "";
+			$message = "";
+            $payload = $dt;
+            $encryptedPassword = $this->encrypt_password($dt->user_password);
 
-			$sql = "SELECT * FROM tbl_feedback_accounts WHERE fld_uname = '$uname' LIMIT 0,1";
+            $payload = array(
+                'uname'=>$dt->user_names,
+                'pword'=>$this->encrypt_password($dt->user_password)
+            );
 
-			$stmt = $this->pdo->query($sql);
-			// $stmt->bindParam(':uname', $uname);
-			$stmt->execute();
-			$numOfRows = $stmt->rowCount();
+            $sql = "INSERT INTO tbl_user( user_names, user_address, user_contact, user_email, user_password) 
+                           VALUES ('$dt->user_names', '$dt->user_address', '$dt->user_contact','$dt->user_email', '$encryptedPassword')";
+                     
 
-		
-				if($result=$this->pdo->query($sql)){
-					if($numOfRows>0){
-						$row = $stmt->fetch(PDO::FETCH_ASSOC);
-						$num = $row['acc_id'];
-						$role = $row['fld_is_admin'];
-						$res_id = $row['res_id'];
-						$uname = $row['fld_uname'];
-						$password = $row['fld_pwd'];
-						
-						if($this->checkpass($pword, $password)){
-							http_response_code(200);
-							$this->data = array(
-								"num"=> $num,
-								"role"=> $role,
-								"uname" =>  $uname,
-								"res_id" =>  $res_id,
-								"date" => date('Y-m-d H:i:s T')
-							);
-							$this->status = array(
-								"remarks"=>"success",
-								"message"=>"Successfully logged in",
-							);
-						}else{
+                           $data = array(); $code = 0; $errmsg= ""; $remarks = "";
+                           try {
+                       
+                               if ($res = $this->pdo->query($sql)->fetchAll()) {
+                                   foreach ($res as $rec) { array_push($data, $rec);}
+                                   $res = null; 
+								   $code = 200; $message = "Successfully Registered"; $remarks = "success";
+                                   return array("code"=>200, "remarks"=>"success");
+                               }
+                           } catch (\PDOException $e) {
+                               $errmsg = $e->getMessage();
+                               $code = 403;
+                           }
+						   return $this->gm->sendPayload($payload, $remarks, $message, $code);                
+        }
 
 
-							http_response_code(401);
-							$this->status = array(
-								'remarks'=>'failed1',
-								'message'=>'Incorrect username or password',
-							);
-						}
-					}else{
-						http_response_code(401);
-						$this->status = array(
-							'remarks'=>'failed2',
-							'message'=>'Incorrect username or password',
-						);
-					}
-				}else{
-					http_response_code(401);
-					$this->status = array(
-						'remarks'=>'failed3',
-						'message'=>'Incorrect username or password',
-					);
-				}
-				return array(
-					'status'=>$this->status,
-					'payload'=>$this->data,
-					'prepared_by'=>'201810109',
-					'timestamp'=>date('D M j, Y G:i:s T')
-				);
+        // public function login($param){
+		// 	$un = $param->param1;
+		// 	$pw = $param->param2;
+		// 	$payload = "";
+		// 	$remarks = "";
+		// 	$message = "";
+		// 	$code = 403;
+
+		// 	$sql = "SELECT * FROM tbl_users WHERE user_uname='$un' LIMIT 1";
+		// 	$res = $this->gm->generalQuery($sql, "Incorrect username or password");
+		// 	if($res['code'] == 200) {
+		// 		if($this->pword_check($pw, $res['data'][0]['user_pword'])) {
+        //             $uid = $res['data'][0]['user_Id'];
+		// 			$ue = $res['data'][0]['user_email'];
+		// 			$fn = $res['data'][0]['user_FName'];
+		// 			$un = $res['data'][0]['user_uname'];
+        //             $ct = $res['data'][0]['user_contact'];
+        //             $sn = $res['data'][0]['user_storeName'];
+		// 			$tk = $this->generateToken($uid, $un, $fn);
+
+		// 			$sql = "UPDATE tbl_users SET token='$tk' WHERE user_Id='$uc'";
+		// 			$this->gm->generalQuery($sql, "");
+
+		// 			$code = 200;
+		// 			$remarks = "success";
+		// 			$message = "Logged in successfully";
+		// 			$payload = array("id"=>$uid, "fullname"=>$fn, "key"=>$tk);
+		// 		} else {
+		// 			$payload = null; 
+		// 			$remarks = "failed"; 
+		// 			$message = "Incorrect username or password";
+		// 		}
+		// 	}	else {
+		// 		$payload = null; 
+		// 		$remarks = "failed"; 
+		// 		$message = $res['errmsg'];
+		// 	}
+		// 	return $this->gm->sendPayload($payload, $remarks, $message, $code);
+		// }
 
 
-			
-		}
-		
-}
-?>
+
+    }
+    ?>

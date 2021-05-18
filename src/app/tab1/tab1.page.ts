@@ -59,9 +59,7 @@ export class Tab1Page implements OnInit {
     })
   }
 
-  getTotal(){
-    
-  }
+
   //Function that will pull products items
   pullProducts(){
     this.ds.sendApiRequest("products", null).subscribe(data => {
