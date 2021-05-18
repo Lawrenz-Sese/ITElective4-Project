@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 2
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="container1">
+    <label for="pname">PRODUCT NAME</label>
+    <input type="text" id="pname" name="pname" [(ngModel)]="pname">
+
+    <label for="pdesc">PRODUCT DESCRIPTION</label>
+    <input type="text" id="pdesc" name="pdesc" [(ngModel)]="pdesc">
+
+    <label for="pquant">QUANTITY</label>
+    <input type="number" id="pquant" name="pquant" [(ngModel)]="pquant">
+
+    <button (click)="addProduct();">ADD PRODUCT</button>
+
+    <!-- <label for="pid1">PRODUCT ID</label>
+    <input type="text" id="pid1" name="pid1" [(ngModel)]="prodInfo.pid1">
+
+    <label for="pname1">First Name</label>
+    <input type="text" id="pname1" name="pname1" [(ngModel)]="prodInfo.pname1">
+
+    <label for="pdesc1">Last Name</label>
+    <input type="text" id="pdesc1" name="pdesc1" [(ngModel)]="prodInfo.pdesc1">
+
+    <label for="pquant1">Country</label>
+    <input type="number" id="pquant1" name="pquant1" [(ngModel)]="prodInfo.pquant1">
+
+    <button (click)="editProduct($event);">EDIT PRODUCT</button> -->
+  </div>
+
+
+
+  <ion-card *ngFor="let products of products">
+    <div class="container">
+      <div class="card">
+        <p>
+          PRODUCT NAME: <span> {{ products.pname }}</span>
+        </p>
+        <p>
+          PRODUCT DESCRIPTION: <span> {{ products.pdesc }}</span>
+        </p>
+        <p>
+          PRODUCT QUANTITY: <span> {{ products.pquant }}</span>
+        </p>
+        <button (click)="editForm(products);">EDIT</button>
+        <button (click)="delProduct(products.pid);">DELETE</button>
+      </div>
+    </div>
+  </ion-card>
+
+
+
+</ion-content>

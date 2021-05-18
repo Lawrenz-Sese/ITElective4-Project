@@ -19,6 +19,8 @@ export class Tab1Page implements OnInit {
     slidesPerView: 1.2
   }
   cart: any;
+  productsCounter: number;
+  cartCounter: number;
   
 
   constructor( private cartService: CartService, private router: Router, private ds: DataService) {}
@@ -51,7 +53,14 @@ export class Tab1Page implements OnInit {
   pullCart(){
     this.ds.sendApiRequest("cart", null).subscribe(data => {
       this.cart = data.payload;
+      for (let i = 0; i <= this.cart.length; i++) {
+        this.cartCounter = i;
+      }
     })
+  }
+
+  getTotal(){
+    
   }
   //Function that will pull products items
   pullProducts(){
@@ -59,6 +68,8 @@ export class Tab1Page implements OnInit {
       this.products = data.payload;
     })
   }
+
+
 
 
 // Add to cart function from pulled data, one item will insert per click.
@@ -70,6 +81,7 @@ export class Tab1Page implements OnInit {
 
     this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
       this.pullProducts();
+      this.pullCart();
     });
 
     Swal.fire({

@@ -18,6 +18,11 @@ export class CartPage implements OnInit {
   cart: any;
   currentItems: any;
   cartinfo: any = {};
+  cartTotal: number;
+  totalamount: number;
+  counterTotal: number;
+  totalamounts: any;
+  delivery: number;
   constructor(private router: Router, private ds: DataService, private modalCtrl: ModalController) {
 
   }
@@ -27,6 +32,7 @@ export class CartPage implements OnInit {
 
   ngOnInit() {
     this.pullCart();
+
   }
 
   // Function that will serve as trigger to open a modal and pass the data
@@ -50,8 +56,26 @@ export class CartPage implements OnInit {
     this.ds.sendApiRequest("cart", null).subscribe(data => {
       this.cart = data.payload;
       console.log(this.cart);
+      this.getTotal();
     })
   }
+ 
+  getTotal() {
+    let total = 0;
+    for (var i = 0; i < this.cart.length; i++) {
+        if (this.cart[i].cart_pquant) {
+            total += this.cart[i].cart_pquant;
+            this.totalamount = total;
+            this.totalamounts = Math.round(total * .12) + total;
+            this.delivery = Math.round(total * .12);
+        }
+        console.log(total);
+        
+        
+    }
+    return total;
+
+}
 
   // Function that will delete the item on cart list 
   async delCarts(e) {

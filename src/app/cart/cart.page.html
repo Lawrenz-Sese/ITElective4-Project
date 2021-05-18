@@ -28,9 +28,15 @@
     </ion-item>
 
     <ion-item>
-      Total: ₱ <span slot="end"></span>
+      Total Cart Products: ₱{{ totalamount }}<span slot="end"></span>
+    </ion-item>
+    <ion-item>
+      Delivery Charge: ₱{{ delivery }}<span slot="end"></span>
+     </ion-item>
+    <ion-item>
+     Total Expenses: ₱{{ totalamounts }}<span slot="end"></span>
     </ion-item>
     
   </ion-list>
-  <ion-button expand="full" routerLink="/login" color="light"><span style="color: white; text-transform: uppercase;">Check out all Items</span></ion-button>
+  <ion-button expand="full"  color="light"><span style="color: white; text-transform: uppercase;">Check out all Items</span></ion-button>
 </ion-content>
