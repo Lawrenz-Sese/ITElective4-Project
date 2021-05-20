@@ -10,6 +10,7 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  name: any;
 
 
 
@@ -18,6 +19,10 @@ export class LoginPage implements OnInit {
   userInfo:any = {};
   user_email: any;
   user_password: any;
+
+
+  ngOnInit() {
+  }
 
   async loginUser(){
     this.userInfo.user_email = this.user_email;
@@ -29,23 +34,26 @@ export class LoginPage implements OnInit {
       console.log(res);
 
       if (res.payload.length == 0) {
+      
         alert("Incorrect Credentials");
+      
       }
       else{
         localStorage.setItem("Fullname", res.payload.Fullname);
         localStorage.setItem("id", res.payload.user_id);
 
+        Swal.fire({
+          icon: 'success',
+          text: 'Welcome' +' '+ res.payload.Fullname + '!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.route.navigate(['']);
       }
     });
-    Swal.fire({
-      icon: 'success',
-      text: 'Sign in successfuly!',
-    })
 
-    this.route.navigate(['']);
+    
   }
 
-  ngOnInit() {
-  }
 
 }

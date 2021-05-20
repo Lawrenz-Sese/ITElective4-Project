@@ -30,20 +30,24 @@
 				break;
 
 				case 'users':
-					if(count($req)>1) {
-						echo json_encode($get->pullUser($req[1]), JSON_PRETTY_PRINT);
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+                    if(count($req)>1) {
+                       
+						echo json_encode($get->pullUsers($d), JSON_PRETTY_PRINT);
 					} else {
-						echo json_encode($get->pullUser(null), JSON_PRETTY_PRINT);
+						echo json_encode($get->pullUsers($d), JSON_PRETTY_PRINT);
 					}
 				break;
 
 				case 'cart':
-					if(count($req)>1) {
-						echo json_encode($get->pullCart($req[1]), JSON_PRETTY_PRINT);
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+                    if(count($req)>1) {
+                       
+						echo json_encode($get->pullCart($d), JSON_PRETTY_PRINT);
 					} else {
-						echo json_encode($get->pullCart(null), JSON_PRETTY_PRINT);
+						echo json_encode($get->pullCart($d), JSON_PRETTY_PRINT);
 					}
-				break;
+                break;
 
 				case 'addProduct':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));

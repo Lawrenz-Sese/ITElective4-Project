@@ -6,7 +6,7 @@
   </div>
 
   <div class="profile" *ngFor="let users of users">
-    <h1 class="user-name">{{ users.user_name +' '+ users.user_fname }}</h1>
+    <h1 class="user-name">{{ users.user_names }}</h1>
     <div class="login-form">
       <div class="form-input">
         <ion-item>
@@ -31,7 +31,7 @@
     </div>
     <div class="action-button">
       <ion-button class="login-button" routerLink="/login">Logout</ion-button>
-      <p class="forgot" routerLink="/login">EDIT MY PROFILE</p>
+      <p class="forgot" (click)="logout()">EDIT MY PROFILE</p>
     </div>
   </div>
 

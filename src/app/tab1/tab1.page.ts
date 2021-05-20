@@ -18,12 +18,12 @@ export class Tab1Page implements OnInit {
     centeredSlides: true,
     slidesPerView: 1.2
   }
+
+
   cart: any;
   productsCounter: number;
   cartCounter: number;
-  
-
-  constructor( private cartService: CartService, private router: Router, private ds: DataService) {}
+  userInfo: any = {};
   products: any;
   prodID: any;
   prodInfo: any = {};
@@ -32,32 +32,51 @@ export class Tab1Page implements OnInit {
   pdesc: any;
   pquant: any;
   users:any;
+  user_Id: any;
+  cartinfo: any = {};
+  
+
+  constructor( private cartService: CartService, private router: Router, private ds: DataService) {}
+
+
 
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
   
   ngOnInit(){
-    // this.cart = this.cartService.getCart();
-    // this.items = this.cartService.getProducts();
     this.pullProducts();
-    this.pullCart();
     this.pullUsers();
+    this.pullCart();
+  }
+
+
+  pullCart() {
+
+    this.cartinfo.user_Id = localStorage.getItem("id");
+    console.log(this.cartinfo);
+    this.ds.sendApiRequest("cart",localStorage.getItem("id")).subscribe(data => {
+     
+    this.cart = data.payload;
+
+    for (let i = 0; i <= this.cart.length; i++) {
+      this.cartCounter = i;
+    }
+  })
+}
+  getTotal() {
+    throw new Error('Method not implemented.');
   }
 
   // Function that will pull user
   pullUsers() {
-    this.ds.sendApiRequest("users", null).subscribe(data => {
-      this.users = data.payload;
-    })
-  }
-  // Function that wil pull cart items
-  pullCart(){
-    this.ds.sendApiRequest("cart", null).subscribe(data => {
-      this.cart = data.payload;
-      for (let i = 0; i <= this.cart.length; i++) {
-        this.cartCounter = i;
-      }
-    })
-  }
+    this.userInfo.user_Id = localStorage.getItem("id");
+      console.log(this.userInfo);
+      this.ds.sendApiRequest("users",localStorage.getItem("id")).subscribe(data => {
+       
+        this.users = data.payload;
+
+    console.log(this.users);
+  })
+}
 
 
   //Function that will pull products items
@@ -67,19 +86,18 @@ export class Tab1Page implements OnInit {
     })
   }
 
-
-
-
 // Add to cart function from pulled data, one item will insert per click.
   addToCart  = (products) => {
     
     this.prodInfo.cart_pname = products.pname;
     this.prodInfo.cart_pquant = products.pquant;
     this.prodInfo.cart_pdesc = products.pdesc;
+    this.prodInfo.user_id = localStorage.getItem("id");
+    
 
     this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
       this.pullProducts();
-      this.pullCart();
+      // this.pullCart();
     });
 
     Swal.fire({

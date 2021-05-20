@@ -42,7 +42,7 @@ export class Tab2Page {
     this.prodInfo.pdesc = this.pdesc;
     this.prodInfo.pquant = this.pquant;
 
-    this.ds.sendApiRequest("addProduct", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
+    this.ds.sendApiRequest("addProduct",(this.prodInfo)).subscribe(data => {
       this.pullProducts();
     });
 

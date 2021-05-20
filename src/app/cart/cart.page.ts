@@ -25,6 +25,7 @@ export class CartPage implements OnInit {
   delivery: number;
   cartlength: any;
   cartCounter: number;
+  user_Id: any;
   constructor(private router: Router, private ds: DataService, private modalCtrl: ModalController) {
 
   }
@@ -39,15 +40,16 @@ export class CartPage implements OnInit {
 
   // Function that will serve as trigger to open a modal and pass the data
   async openModal(cart) {
-
     const modal = await this.modalCtrl.create({
       component: CartCheckoutPage,
+      
       componentProps: {
         cart: cart.cart_id,
         cartdesc: cart.cart_pdesc,
         name: cart.cart_pname,
         quant: cart.cart_pquant,
       }
+      
     });
     console.log(cart);
     await modal.present();
@@ -55,10 +57,15 @@ export class CartPage implements OnInit {
 
   // Function that will pull all your cart items from data base
   pullCart() {
-    this.ds.sendApiRequest("cart", null).subscribe(data => {
-      this.cart = data.payload;
-      console.log(this.cart);
-      this.getTotal();
+
+      this.cartinfo.user_Id = localStorage.getItem("id");
+      console.log(this.cartinfo);
+      this.ds.sendApiRequest("cart",localStorage.getItem("id")).subscribe(data => {
+       
+        this.cart = data.payload;
+
+        console.log(this.cart);
+         this.getTotal();
 
       for (let i = 0; i <= this.cart.length; i++) {
         this.cartCounter = i;
@@ -102,5 +109,9 @@ export class CartPage implements OnInit {
         )
       }
     })
+  }
+
+  openCheckout(){
+    this.router.navigate(['/cart-checkout']);
   }
 }
