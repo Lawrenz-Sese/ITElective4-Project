@@ -31,9 +31,8 @@ export class LoginPage implements OnInit {
    
 
     await this.ds.sendApiRequest("loginUser", this.userInfo).subscribe(res => {
-      console.log(res);
 
-      if (res.payload.length == 0) {
+      if (res.payload == 0) {
       
         alert("Incorrect Credentials");
       
@@ -48,7 +47,7 @@ export class LoginPage implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-        this.route.navigate(['']);
+        this.route.navigate(['/main']);
       }
     });
 

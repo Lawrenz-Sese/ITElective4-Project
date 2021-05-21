@@ -1,9 +1,10 @@
 <ion-content [fullscreen]="true">
   <div class="header">
     <div class="holder">
-      <img src="../../assets/lawrenz.jpg" alt="" class="src">
+      <img src="./assets/project-logo/default.png" alt="" class="src">
     </div>
   </div>
+  
 
   <div class="profile" *ngFor="let users of users">
     <h1 class="user-name">{{ users.user_names }}</h1>
@@ -23,15 +24,15 @@
           <ion-input type="text"  disabled="true">Address: {{ users.user_address }}</ion-input>
         </ion-item>
       </div>
-      <div class="form-input">
+      <!-- <div class="form-input">
         <ion-item>
           <ion-input type="text"  disabled="true">Contact: {{users.user_contact}}</ion-input>
         </ion-item>
-      </div>
+      </div> -->
     </div>
     <div class="action-button">
-      <ion-button class="login-button" routerLink="/login">Logout</ion-button>
-      <p class="forgot" (click)="logout()">EDIT MY PROFILE</p>
+      <ion-button class="login-button" (click)="logout()">Logout</ion-button>
+      <p class="forgot">EDIT MY PROFILE</p>
     </div>
   </div>
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DataService } from "src/app/service/data.service";
 import { TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tab3',
@@ -33,11 +34,31 @@ export class Tab3Page {
 }
 
 logout(){
-  localStorage.clear();
-  window.localStorage.removeItem('id');
-  this.route.navigate(['/login']);
 
+  Swal.fire({
+    title: 'Are you sure?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Proceed'
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      localStorage.clear();
+      window.localStorage.removeItem('id');
+      this.route.navigate(['/login']);
+
+
+      Swal.fire({
+        icon: 'success',
+        text: 'Logout',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+  })
+  
 }
-
 
 }
