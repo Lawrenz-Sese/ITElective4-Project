@@ -1,95 +1,102 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-.header {
-  height: 25vh;
-  width: 100%;
-  max-width: 500px;
-  background: #66a389;;
-  right: 0;
-  left: 0;
-  top: 0;
-  position: relative;
-  margin: auto;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+ion-header {
+  ion-toolbar,
+  ion-item {
+    --background: #fff;
+    background: #fff;
+    padding: 0 10px;
+  }
+  ion-buttons{
+    margin-top: 30px;
+  }
+
+  ion-toolbar {
+    .bordered {
+      --border-radius: 10px;
+      --box-shadow: 5px 5px 10px #d1d1d1, -5px -5px 10px #ffffff;
+    }
+  }
+
+  ion-item {
+    h3 {
+      font-weight: 700;
+      font-size: 14px;
+      color: #245c5a;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    ion-avatar {
+      --border-radius: 40%;
+    }
+  }
 }
 
-.holder {
-  border: 1px solid #dddddd;
-  border-radius: 50%;
-  height: 120px;
-  width: 120px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  overflow: hidden;
-  background-color: whitesmoke;
-  margin-top: 80px;
-  margin-left: 75px;
-  position: absolute;
+ion-content {
+  --background: #f1f5f8;
+
+  .slides {
+    background: #fff;
+    padding: 4px 10px 20px 10px;
+    border-radius: 0 0 15px 15px;
+  }
 }
 
-.src {
-  position: relative;
-  width: 100%;
-}
-
-.profile {
-  width: 100%;
-  height: 50vh;
-  position: relative;
-  margin-top: 70px;
-  justify-content: center;
-  text-align: center;
-}
-
-.user-name {
+ion-label {
+  color: black;
   font-size: 16px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-family: 'Poppins', sans-serif;
 }
 
-hr {
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+.title {
+  font-size: 15px;
+  font-weight: bolder;
+  font-family: "Poppins", sans-serif;
+  // text-transform: uppercase;
 }
 
-.login-form {
-  position: relative;
-  margin-bottom: 10px;
+.desc{
+  font-size: 13px;
+  font-family: 'Poppins',sans-serif;
+}
 
-  ion-item:part(native) {
-    padding-left: 0;
-  }
+.container {
+  padding: 10px;
+  margin-top: -30px;
 
+}
 
-  ion-input {
-    font-size: 0.8rem;
-    --padding-top: 8px;
-    color: #7b7b7b;
-    font-family: 'Poppins', sans-serif;
-  }
+p {
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
 }
 
 .action-buttons {
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .login-button {
   --background: #245c5a;
   width: 100%;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .forgot {
   margin-top: 10px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: #7b7b7b;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   cursor: pointer;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #1e5799;
+  background: linear-gradient(to right,  #245c5a 70%,#7db9e8 30%);
 }

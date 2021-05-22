@@ -26,6 +26,7 @@ export class CartPage implements OnInit {
   cartlength: any;
   cartCounter: number;
   user_Id: any;
+  prodInfo: any;
   constructor(private router: Router, private ds: DataService, private modalCtrl: ModalController) {
 
   }
@@ -40,14 +41,16 @@ export class CartPage implements OnInit {
 
   // Function that will serve as trigger to open a modal and pass the data
   async openModal(cart) {
+
     const modal = await this.modalCtrl.create({
+      
       component: CartCheckoutPage,
       
       componentProps: {
         cart: cart.cart_id,
         cartdesc: cart.cart_pdesc,
         name: cart.cart_pname,
-        quant: cart.cart_pquant,
+        quant: cart.cart_pquant
       }
       
     });

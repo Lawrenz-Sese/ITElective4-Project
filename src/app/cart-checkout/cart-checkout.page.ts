@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { DataService } from "src/app/service/data.service";
 
 
 @Component({
@@ -13,10 +14,14 @@ export class CartCheckoutPage implements OnInit {
   @Input() cartdesc: any;
   @Input() name: any;
   @Input() quant: any;
+  userInfo: any = {};
+  users: any;
+  totalAmount: any;
+  total: number;
 
 
 
-  constructor( private modalCtrl:ModalController) { }
+  constructor( private modalCtrl:ModalController, private ds: DataService) { }
 
 // Exit Modal
   dismissModal(){
@@ -24,7 +29,19 @@ export class CartCheckoutPage implements OnInit {
  }
 
   ngOnInit( ) {
+    this.pullUsers();
   }
+
+  pullUsers() {
+    this.userInfo.user_Id = localStorage.getItem("id");
+      console.log(this.userInfo);
+      this.ds.sendApiRequest("users",localStorage.getItem("id")).subscribe(data => {
+       
+      this.users = data.payload;
+
+    console.log(this.users);
+  })
+}
 
 
 

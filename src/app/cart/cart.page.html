@@ -16,7 +16,7 @@
       Cart List
     </ion-list-header>
     <ion-item *ngFor="let cart of cart" lines="inset">
-     {{ cart.cart_pdesc }} of {{ cart.cart_pname }} -  ₱{{ cart.cart_pquant }}
+     {{ cart.cart_pdesc }}kg of {{ cart.cart_pname }} -  ₱{{ cart.cart_pquant }}
      <span hidden> {{ cart?.cart_id }}</span>
 
       <ion-label slot="end" text-right>

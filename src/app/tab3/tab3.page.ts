@@ -13,6 +13,10 @@ export class Tab3Page {
   users: any;
   userInfo: any = {};
   user_id: any;
+  cartinfo: any ={};
+  cart: any;
+  cartCounter: number;
+  user_Id: any
 
   constructor( private ds: DataService, public route: Router ) {}
 
@@ -20,6 +24,7 @@ export class Tab3Page {
 
   ngOnInit(): void {
     this.pullUsers();
+    this.pullCart()
   }
 
   pullUsers() {
@@ -59,6 +64,20 @@ logout(){
     }
   })
   
+}
+
+pullCart() {
+
+  this.cartinfo.user_Id = localStorage.getItem("id");
+  console.log(this.cartinfo);
+  this.ds.sendApiRequest("cart",localStorage.getItem("id")).subscribe(data => {
+   
+  this.cart = data.payload;
+
+  for (let i = 0; i <= this.cart.length; i++) {
+    this.cartCounter = i;
+  }
+})
 }
 
 }

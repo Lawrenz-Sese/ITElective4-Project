@@ -62,9 +62,7 @@ export class Tab1Page implements OnInit {
     }
   })
 }
-  getTotal() {
-    throw new Error('Method not implemented.');
-  }
+
 
   // Function that will pull user
   pullUsers() {
@@ -83,6 +81,7 @@ export class Tab1Page implements OnInit {
   pullProducts(){
     this.ds.sendApiRequest("products", null).subscribe(data => {
       this.products = data.payload;
+      // console.log(this.products);
     })
   }
 
@@ -95,9 +94,10 @@ export class Tab1Page implements OnInit {
     this.prodInfo.user_id = localStorage.getItem("id");
     
 
+
     this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
       this.pullProducts();
-      // this.pullCart();
+      this.pullCart();
     });
 
     Swal.fire({
@@ -109,6 +109,32 @@ export class Tab1Page implements OnInit {
 
     console.log(this.prodInfo);
   }
+
+
+  addToCart1  = (products) => {
+    
+    this.prodInfo.cart_pname = products.pname;
+    this.prodInfo.cart_pquant = products.pquant / 2;
+    this.prodInfo.cart_pdesc = products.pdesc /2;
+    this.prodInfo.user_id = localStorage.getItem("id");
+    
+
+
+    this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
+      this.pullProducts();
+      this.pullCart();
+    });
+
+    Swal.fire({
+      icon: 'success',
+      text: 'Successfuly Added!',
+    })
+
+    this.router.navigate(['/cart'])
+
+    console.log(this.prodInfo);
+  }
+
 
   openCart(){
     this.router.navigate(['/cart']);

@@ -1,39 +1,60 @@
-<ion-content [fullscreen]="true">
-  <div class="header">
-    <div class="holder">
-      <img src="./assets/project-logo/default.png" alt="" class="src">
-    </div>
-  </div>
-  
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color="light">
+        <ion-icon color="custom" name="create"></ion-icon>
+      </ion-button>
+      <ion-button color="light" (click)="logout()">
+        <ion-icon color="custom" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 
-  <div class="profile" *ngFor="let users of users">
-    <h1 class="user-name">{{ users.user_names }}</h1>
-    <div class="login-form">
-      <div class="form-input">
-        <ion-item>
-          <ion-input type="text" disabled="true"> Contact: {{ users.user_contact }} </ion-input>
-        </ion-item>
-      </div>
-      <div class="form-input">
-        <ion-item>
-          <ion-input type="text"  disabled="true"> Email: {{ users.user_email }} </ion-input>
-        </ion-item>
-      </div>
-      <div class="form-input">
-        <ion-item>
-          <ion-input type="text"  disabled="true">Address: {{ users.user_address }}</ion-input>
-        </ion-item>
-      </div>
-      <!-- <div class="form-input">
-        <ion-item>
-          <ion-input type="text"  disabled="true">Contact: {{users.user_contact}}</ion-input>
-        </ion-item>
-      </div> -->
-    </div>
-    <div class="action-button">
-      <ion-button class="login-button" (click)="logout()">Logout</ion-button>
-      <p class="forgot">EDIT MY PROFILE</p>
-    </div>
+  <ion-item lines="none">
+
+    <ion-avatar slot="start">
+      <img src="../../assets/project-logo/default.png">
+    </ion-avatar>
+    <ion-label *ngFor=" let users of users">
+      <p>Hello,</p>
+      <h3>{{ users.user_names }}</h3>
+    </ion-label>
+
+  </ion-item>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="slides ion-margin-bottom">
+
+
   </div>
+  <br>
+
+  <div class="container" *ngFor=" let users of users ">
+    <p class="title">Profile Information</p>
+    <hr>
+
+    <h1 class="desc">Address: {{ users.user_address }} </h1>
+    <h1 class="desc">Contact: {{ users.user_contact }}</h1>
+    <h1 class="desc">Email: {{ users.user_email }} </h1>
+
+    <p class="title">Shop Information</p>
+    <hr>
+    <h1 class="desc">Cart Details: You have {{ cartCounter }} items inside your cart </h1>
+    <h1 class="desc">Checkout Details: </h1>
+
+    
+
+
+  </div>
+
+  <!-- <div class="action-button">
+    <ion-button class="login-button" (click)="logout()">Logout</ion-button>
+    <p class="forgot">EDIT MY PROFILE</p>
+  </div> -->
+
+
 
 </ion-content>

@@ -15,6 +15,9 @@ export class Tab2Page {
   productinfo: any;
 
   constructor(private ds: DataService, public route: Router) { }
+  slidesOptions = {
+    slidesPerView: 2
+  }
 
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
 
