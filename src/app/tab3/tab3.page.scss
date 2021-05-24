@@ -3,11 +3,11 @@
 ion-header {
   ion-toolbar,
   ion-item {
-    --background: #fff;
-    background: #fff;
+    --background: #287094;
+    background: #287094;
     padding: 0 10px;
   }
-  ion-buttons{
+  ion-buttons {
     margin-top: 30px;
   }
 
@@ -20,14 +20,15 @@ ion-header {
 
   ion-item {
     h3 {
-      font-weight: 700;
-      font-size: 14px;
-      color: #245c5a;
+      // font-weight: 700;
+      font-size: 15px;
+      color: #fff;
     }
 
     p {
-      font-weight: 500;
-      font-size: 16px;
+      font-weight: bold;
+      font-size: 14px;
+      color: #fff;
     }
 
     ion-avatar {
@@ -37,12 +38,12 @@ ion-header {
 }
 
 ion-content {
-  --background: #f1f5f8;
+  --background: #fff;
 
   .slides {
-    background: #fff;
+    background: #287094;
     padding: 4px 10px 20px 10px;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 20px 20px;
   }
 }
 
@@ -56,17 +57,99 @@ ion-label {
   font-weight: bolder;
   font-family: "Poppins", sans-serif;
   // text-transform: uppercase;
+  color: #023246;
 }
 
-.desc{
+.desc {
   font-size: 13px;
-  font-family: 'Poppins',sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .container {
   padding: 10px;
   margin-top: -30px;
 
+  -webkit-animation-name: bounceInDown;
+  animation-name: bounceInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes bounceInDown {
+  0%,
+  60%,
+  75%,
+  90%,
+  100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -3000px, 0);
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 5px, 0);
+  }
+
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes bounceInDown {
+  0%,
+  60%,
+  75%,
+  90%,
+  100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -3000px, 0);
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 5px, 0);
+  }
+
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
 }
 
 p {
@@ -94,9 +177,16 @@ p {
   cursor: pointer;
 }
 
-hr {
+.line {
   border: 0;
   height: 1px;
   background: #1e5799;
-  background: linear-gradient(to right,  #245c5a 70%,#7db9e8 30%);
+  background: linear-gradient(to right, #287094 70%, #7db9e8 30%);
+}
+
+ion-icon {
+  font-size: 24px;
+  // background-color: #fff;
+  color: #fff;
+  margin-left: -10px;
 }

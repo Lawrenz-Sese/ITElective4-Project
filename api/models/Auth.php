@@ -117,12 +117,16 @@
 				
 					$user_names =$res['data'][0]['user_names'];
 					$user_id = $res['data'][0]['user_id'];
+					$user_address = $res['data'][0]['user_address'];
+					$user_contact = $res['data'][0]['user_contact'];
+					$user_email = $res['data'][0]['user_email'];
+					$user_date = $res['data'][0]['user_date'];
 				
 
 					$code = 200;
 					$remarks = "success";
 					$message = "Logged in successfully";
-					$payload = array("user_id"=>$user_id, "Fullname"=>$user_names);
+					$payload = array("user_id"=>$user_id, "Fullname"=>$user_names, "user_address"=>$user_address,"user_contact"=>$user_contact,"user_date"=>$user_date);
 				} else {
 					$payload = null; 
 					$remarks = "failed"; 

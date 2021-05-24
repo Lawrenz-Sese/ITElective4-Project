@@ -1,12 +1,24 @@
-<ion-toolbar class="head" color="light">
-  <ion-title *ngFor="let users of users">
-    <h1>Good day, {{users.user_names}}!</h1>
-    <p class="h12">Happy shopping, here at MARK-IT</p>
-  </ion-title>
-</ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-item lines="none">
+    <ion-avatar slot="start" style="margin-top: 50px;">
+      <img src="../../assets/project-logo/logo1.png">
+    </ion-avatar>
+    <ion-label *ngFor=" let users of users" style="margin-top: 50px;">
+      <p>Hi, {{ users.user_names }}</p>
+      <h3>Enjoy your shopping!</h3>
+    </ion-label>
+  </ion-item>
+
+</ion-header>
 
 
 <ion-content [fullscreen]="true">
+
+  
+  <div class="slides ion-margin-bottom">
+
+
+  </div>
 
 
 

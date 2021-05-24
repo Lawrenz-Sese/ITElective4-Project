@@ -40,6 +40,10 @@ export class LoginPage implements OnInit {
       else{
         localStorage.setItem("Fullname", res.payload.Fullname);
         localStorage.setItem("id", res.payload.user_id);
+        localStorage.setItem("email", res.payload.user_email);
+        localStorage.setItem("contact", res.payload.user_contact);
+        localStorage.setItem("address", res.payload.user_address);
+        localStorage.setItem("date", res.payload.user_date);
 
         Swal.fire({
           icon: 'success',

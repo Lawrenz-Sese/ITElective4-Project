@@ -51,6 +51,28 @@ class Post{
         return $this->gm->sendPayload($payload, $remarks, $message, $code);
       
     }
+
+    //CHECK OUT
+    public function addCheck($data) {
+
+        $code = 401;
+        $payload = null;
+        $remarks = "failed";
+        $message = "Unable to retrieve data";
+  
+
+        $res = $this->gm->insert('tbl_checkout', $data);
+
+        if($res['code']==200) {
+            $code = 200;
+            $payload = $res['data'];
+            $remarks = "success";
+            $message = "Successfully retrieved data";
+            // return $this->get->pullCart(null);
+        }
+        return $this->gm->sendPayload($payload, $remarks, $message, $code);
+      
+    }
 // //DELETE PRODUCT
 //     public function delProduct($data) {
 

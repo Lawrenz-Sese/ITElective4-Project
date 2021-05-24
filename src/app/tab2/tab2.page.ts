@@ -11,6 +11,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+
+  cardItem: any = [
+    {title: 'Title 1', content: 'Content 1' },
+    {title: 'Title 2', content: 'Content 2' },
+    {title: 'Title 3', content: 'Content 3' }
+  ]
+
   alertCtrl: any;
   productinfo: any;
 

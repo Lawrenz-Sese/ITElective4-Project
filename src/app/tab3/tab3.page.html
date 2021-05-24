@@ -1,17 +1,15 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-button color="light">
-        <ion-icon color="custom" name="create"></ion-icon>
+      <ion-button>
+        <ion-icon  name="create"></ion-icon>
       </ion-button>
-      <ion-button color="light" (click)="logout()">
-        <ion-icon color="custom" name="power"></ion-icon>
+      <ion-button (click)="logout()">
+        <ion-icon name="power"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-
   <ion-item lines="none">
-
     <ion-avatar slot="start">
       <img src="../../assets/project-logo/default.png">
     </ion-avatar>
@@ -19,42 +17,29 @@
       <p>Hello,</p>
       <h3>{{ users.user_names }}</h3>
     </ion-label>
-
   </ion-item>
-
 </ion-header>
 
 <ion-content>
-
-  <div class="slides ion-margin-bottom">
-
-
-  </div>
+  <div class="slides ion-margin-bottom"></div>
   <br>
 
   <div class="container" *ngFor=" let users of users ">
+    
     <p class="title">Profile Information</p>
-    <hr>
+
+    <hr class="line">
 
     <h1 class="desc">Address: {{ users.user_address }} </h1>
     <h1 class="desc">Contact: {{ users.user_contact }}</h1>
     <h1 class="desc">Email: {{ users.user_email }} </h1>
+    <h1 class="desc">Member Since: {{ users.user_date }} </h1>
 
-    <p class="title">Shop Information</p>
-    <hr>
+    <p class="title">Cart Information</p>
+
+    <hr class="line">
+
     <h1 class="desc">Cart Details: You have {{ cartCounter }} items inside your cart </h1>
-    <h1 class="desc">Checkout Details: </h1>
-
-    
-
-
+    <!-- <h1 class="desc">Checkout Details: </h1> -->
   </div>
-
-  <!-- <div class="action-button">
-    <ion-button class="login-button" (click)="logout()">Logout</ion-button>
-    <p class="forgot">EDIT MY PROFILE</p>
-  </div> -->
-
-
-
 </ion-content>

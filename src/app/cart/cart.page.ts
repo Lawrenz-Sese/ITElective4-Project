@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
 import { DataService } from "src/app/service/data.service";
 import { TemplateRef, ViewChild } from '@angular/core';
@@ -13,7 +12,9 @@ import { CartCheckoutPage } from '../cart-checkout/cart-checkout.page';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
-  selectedItems = [];
+
+  //variables 
+  
   total = 0;
   cart: any;
   currentItems: any;
@@ -27,49 +28,39 @@ export class CartPage implements OnInit {
   cartCounter: number;
   user_Id: any;
   prodInfo: any;
-  constructor(private router: Router, private ds: DataService, private modalCtrl: ModalController) {
 
-  }
+
+  constructor( private router: Router, private ds: DataService, private modalCtrl: ModalController) {}
 
 
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
 
   ngOnInit() {
     this.pullCart();
-
   }
 
   // Function that will serve as trigger to open a modal and pass the data
   async openModal(cart) {
-
     const modal = await this.modalCtrl.create({
-      
       component: CartCheckoutPage,
-      
       componentProps: {
         cart: cart.cart_id,
         cartdesc: cart.cart_pdesc,
         name: cart.cart_pname,
         quant: cart.cart_pquant
       }
-      
     });
-    console.log(cart);
     await modal.present();
   }
 
   // Function that will pull all your cart items from data base
   pullCart() {
-
       this.cartinfo.user_Id = localStorage.getItem("id");
-      console.log(this.cartinfo);
       this.ds.sendApiRequest("cart",localStorage.getItem("id")).subscribe(data => {
-       
-        this.cart = data.payload;
+      this.cart = data.payload;
+      this.getTotal();
 
-        console.log(this.cart);
-         this.getTotal();
-
+      // Cart Counter 
       for (let i = 0; i <= this.cart.length; i++) {
         this.cartCounter = i;
       }
@@ -87,8 +78,7 @@ export class CartPage implements OnInit {
         }   
     }
     return total;
-
-}
+  }
 
   // Function that will delete the item on cart list 
   async delCarts(e) {

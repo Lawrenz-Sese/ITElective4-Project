@@ -1,60 +1,41 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button style="margin-left: 10px;">
+        <ion-icon name="help-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/main">
+        <ion-icon name="person-circle"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/cart">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
+  <ion-item lines="none">
+    <ion-label>
+      <p>Hola!</p>
+      <h3>Checkout Information</h3>
+    </ion-label>
+  </ion-item>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="slides ion-margin-bottom"></div>
 
-  <div class="container1">
-    <label for="pname">PRODUCT NAME</label>
-    <input type="text" id="pname" name="pname" [(ngModel)]="pname">
+  <div class="container">
+    <ion-card *ngFor = " let x of cardItem ">
 
-    <label for="pdesc">PRODUCT DESCRIPTION</label>
-    <input type="text" id="pdesc" name="pdesc" [(ngModel)]="pdesc">
-
-    <label for="pquant">QUANTITY</label>
-    <input type="number" id="pquant" name="pquant" [(ngModel)]="pquant">
-
-    <button (click)="addProduct();">ADD PRODUCT</button>
-
-    <!-- <label for="pid1">PRODUCT ID</label>
-    <input type="text" id="pid1" name="pid1" [(ngModel)]="prodInfo.pid1">
-
-    <label for="pname1">First Name</label>
-    <input type="text" id="pname1" name="pname1" [(ngModel)]="prodInfo.pname1">
-
-    <label for="pdesc1">Last Name</label>
-    <input type="text" id="pdesc1" name="pdesc1" [(ngModel)]="prodInfo.pdesc1">
-
-    <label for="pquant1">Country</label>
-    <input type="number" id="pquant1" name="pquant1" [(ngModel)]="prodInfo.pquant1">
-
-    <button (click)="editProduct($event);">EDIT PRODUCT</button> -->
+      <ion-card-header>
+       {{ x.title }}
+      </ion-card-header>
+    
+      <ion-card-content>
+       {{ x.content }}
+      </ion-card-content>
+    
+    </ion-card>
   </div>
-
-
-
-  <ion-card *ngFor="let products of products">
-    <div class="container">
-      <div class="card">
-        <p>
-          PRODUCT NAME: <span> {{ products.pname }}</span>
-        </p>
-        <p>
-          PRODUCT DESCRIPTION: <span> {{ products.pdesc }}</span>
-        </p>
-        <p>
-          PRODUCT QUANTITY: <span> {{ products.pquant }}</span>
-        </p>
-        <button (click)="editForm(products);">EDIT</button>
-        <button (click)="delProduct(products.pid);">DELETE</button>
-      </div>
-    </div>
-  </ion-card>
-
-
-
 </ion-content>

@@ -59,6 +59,11 @@
 					echo json_encode($gm->insert("tbl_cart",$d), JSON_PRETTY_PRINT);
 				break;
 
+				case 'addCheck':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($gm->insert("tbl_checkout",$d), JSON_PRETTY_PRINT);
+				break;
+
 				case 'delProduct':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->delProduct($d), JSON_PRETTY_PRINT);

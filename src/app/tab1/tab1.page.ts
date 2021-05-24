@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from '../cart.service';
 import { DataService } from "src/app/service/data.service";
 import { TemplateRef, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
@@ -19,7 +18,7 @@ export class Tab1Page implements OnInit {
     slidesPerView: 1.2
   }
 
-
+  // variables
   cart: any;
   productsCounter: number;
   cartCounter: number;
@@ -36,7 +35,7 @@ export class Tab1Page implements OnInit {
   cartinfo: any = {};
   
 
-  constructor( private cartService: CartService, private router: Router, private ds: DataService) {}
+  constructor(private router: Router, private ds: DataService) {}
 
 
 
@@ -48,31 +47,24 @@ export class Tab1Page implements OnInit {
     this.pullCart();
   }
 
-
+  // Pull cart items depends on user logged in account. 
   pullCart() {
-
     this.cartinfo.user_Id = localStorage.getItem("id");
-    console.log(this.cartinfo);
     this.ds.sendApiRequest("cart",localStorage.getItem("id")).subscribe(data => {
-     
     this.cart = data.payload;
 
-    for (let i = 0; i <= this.cart.length; i++) {
+      for (let i = 0; i <= this.cart.length; i++) {
       this.cartCounter = i;
-    }
-  })
-}
+      }
+    })
+  }
 
 
   // Function that will pull user
   pullUsers() {
     this.userInfo.user_Id = localStorage.getItem("id");
-      console.log(this.userInfo);
-      this.ds.sendApiRequest("users",localStorage.getItem("id")).subscribe(data => {
-       
-        this.users = data.payload;
-
-    console.log(this.users);
+    this.ds.sendApiRequest("users",localStorage.getItem("id")).subscribe(data => {
+    this.users = data.payload;
   })
 }
 
@@ -80,8 +72,7 @@ export class Tab1Page implements OnInit {
   //Function that will pull products items
   pullProducts(){
     this.ds.sendApiRequest("products", null).subscribe(data => {
-      this.products = data.payload;
-      // console.log(this.products);
+    this.products = data.payload;
     })
   }
 
@@ -93,8 +84,6 @@ export class Tab1Page implements OnInit {
     this.prodInfo.cart_pdesc = products.pdesc;
     this.prodInfo.user_id = localStorage.getItem("id");
     
-
-
     this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
       this.pullProducts();
       this.pullCart();
@@ -118,8 +107,6 @@ export class Tab1Page implements OnInit {
     this.prodInfo.cart_pdesc = products.pdesc /2;
     this.prodInfo.user_id = localStorage.getItem("id");
     
-
-
     this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
       this.pullProducts();
       this.pullCart();
@@ -134,7 +121,6 @@ export class Tab1Page implements OnInit {
 
     console.log(this.prodInfo);
   }
-
 
   openCart(){
     this.router.navigate(['/cart']);

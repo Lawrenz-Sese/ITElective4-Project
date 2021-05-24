@@ -244,3 +244,44 @@ hr {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+
+
+ion-header {
+  ion-toolbar,
+  ion-item {
+    --background: #287094;
+    background: #287094;
+    padding: 0 10px;
+  }
+
+  ion-toolbar {
+    .bordered {
+      --border-radius: 10px;
+      --box-shadow: 5px 5px 10px #d1d1d1, -5px -5px 10px #ffffff;
+    }
+  }
+
+  ion-item {
+    h3 {
+      // font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    p {
+      font-weight: bold;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    ion-avatar {
+      --border-radius: 40%;
+    }
+  }
+}
+  .slides {
+    background: #287094;
+    padding: 4px 10px 30px 10px;
+    border-radius: 0 0 20px 20px;
+  }

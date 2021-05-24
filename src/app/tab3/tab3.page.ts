@@ -10,6 +10,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+
+  //variables
+
   users: any;
   userInfo: any = {};
   user_id: any;
@@ -17,6 +20,7 @@ export class Tab3Page {
   cart: any;
   cartCounter: number;
   user_Id: any
+  dates: any;
 
   constructor( private ds: DataService, public route: Router ) {}
 
@@ -27,19 +31,18 @@ export class Tab3Page {
     this.pullCart()
   }
 
+  //This function will pull the user information depends on the logged in account. 
   pullUsers() {
     this.userInfo.user_Id = localStorage.getItem("id");
-      console.log(this.userInfo);
-      this.ds.sendApiRequest("users",localStorage.getItem("id")).subscribe(data => {
-       
-        this.users = data.payload;
+    this.ds.sendApiRequest("users",localStorage.getItem("id")).subscribe(data => {
+    this.users = data.payload;
 
-    console.log(this.users);
-  })
-}
 
+    })
+  }
+
+// Logout function, will remove the localStorage after confirmed. 
 logout(){
-
   Swal.fire({
     title: 'Are you sure?',
     icon: 'warning',
@@ -49,12 +52,9 @@ logout(){
     confirmButtonText: 'Proceed'
   }).then((result) => {
     if (result.isConfirmed) {
-
       localStorage.clear();
       window.localStorage.removeItem('id');
       this.route.navigate(['/login']);
-
-
       Swal.fire({
         icon: 'success',
         text: 'Logout',
@@ -63,15 +63,12 @@ logout(){
       })
     }
   })
-  
 }
 
+// Pull cart for user info cart information
 pullCart() {
-
   this.cartinfo.user_Id = localStorage.getItem("id");
-  console.log(this.cartinfo);
   this.ds.sendApiRequest("cart",localStorage.getItem("id")).subscribe(data => {
-   
   this.cart = data.payload;
 
   for (let i = 0; i <= this.cart.length; i++) {
