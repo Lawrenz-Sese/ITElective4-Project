@@ -13,13 +13,14 @@
       Product Description
     </ion-list-header>
     <ion-item *ngFor = "let cart of cart">
-      <ion-button expand="full" (click)="addCheck(cart)" color="light"><span style="color: white;">Checkout</span></ion-button>
+      
       <ion-label> {{ cart.cart_pdesc }}kg of {{ cart.cart_pname }} -  ₱{{ cart.cart_pquant }}</ion-label>
     </ion-item>
     <ion-item>
+
       <ion-label>Total Expenses: {{ totalamounts }}</ion-label>
     </ion-item>
-    
+<ion-button expand="full" (click)="addCheck(cart)" color="light"><span style="color: white;">Checkout</span></ion-button>    
   </ion-list>
   
 

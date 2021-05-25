@@ -26,6 +26,7 @@ export class CartCheckoutPage implements OnInit {
   delivery: number;
   checkInfo: any = {};
   cart: any;
+  code: string;
 
 
 
@@ -86,8 +87,27 @@ getTotal() {
 
 }
 
+// generateCode(){
+//   Math.random() * (10 - 7 + 1) + 7;
 
 
+//   console.log(Math.random());
+// }
+
+
+  min = 1;
+  max = 9
+
+ generateCode() {
+  var seq = (Math.floor(100000 + Math.random() * 900000)).toString().substring(1);
+
+  this.code = seq;
+  console.log(this.code);
+}
+
+cart_pdesc: any;
+cart_pname: any;
+cart_pquant:any;
 
 addCheck  = (cart) => {
     
@@ -96,11 +116,17 @@ addCheck  = (cart) => {
   this.checkInfo.check_pquant = cart.cart_pquant;
   this.checkInfo.check_totalamounts = this.totalamounts;
 
+  var seq = (Math.floor(100000 + Math.random() * 900000)).toString().substring(1);
+  this.code = seq;
+  this.checkInfo.check_code = this.code;
+
   this.checkInfo.user_id = localStorage.getItem("id");
   this.checkInfo.user_names = localStorage.getItem("Fullname");
   this.checkInfo.user_contact = localStorage.getItem("contact");
   // this.checkInfo.user_email = localStorage.getItem("email");
   this.checkInfo.user_address = localStorage.getItem("address");
+
+
   
   
 
