@@ -55,7 +55,7 @@ export class CartPage implements OnInit {
     await modal.present();
   }
 
-  // Function that will pull all your cart items from data base
+  // Function that will pull all your cart items from database depends on logged in user
   pullCart() {
       this.cartinfo.user_Id = localStorage.getItem("id");
       this.ds.sendApiRequest("cart",localStorage.getItem("id")).subscribe(data => {
@@ -68,7 +68,7 @@ export class CartPage implements OnInit {
       }
     })
   }
- 
+ // Function that will compute the total amount inside the cart items
   getTotal() {
     let total = 0;
     for (var i = 0; i < this.cart.length; i++) {
@@ -108,6 +108,7 @@ export class CartPage implements OnInit {
     this.checkInfo.check_pquant = cart.cart_pquant;
     this.checkInfo.check_pdesc = cart.cart_pdesc;
 
+    // Generate a 5 digit random number
     var seq = (Math.floor(100000 + Math.random() * 900000)).toString().substring(1);
     this.code = seq;
     this.checkInfo.check_code = this.code;
@@ -129,6 +130,7 @@ export class CartPage implements OnInit {
       // this.pullProducts();
       this.pullCart();
       this.delCarts(this.checkInfo.cart_id);
+      this.router.navigate(['/main/tabs/tab2']);
     });
     Swal.fire(
       'Deleted!',

@@ -16,8 +16,8 @@
 			$h=[
 				"typ"=>"JWT",
 				"alg"=>'HS256',
-				"app"=>"Tinda",
-				"dev"=>"Ramirez, Jimenez, Marchan"
+				"app"=>"Mark-IT",
+				"dev"=>"Diestro, Aquino, Laguisma"
 			];
 			return str_replace(['+','/','='],['-','_',''], base64_encode(json_encode($h)));
 		}
@@ -27,13 +27,13 @@
 				'uid'=>$uid,
 				'un'=>$un,
 				'fn'=>$fn,
-				'iby'=>'Ramirez Chris John',
+				'iby'=>'Diestro Lawrenz Sese',
 				'ie'=>'ramirez@futuredev.com',
 				'idate'=>date_create()
 			];
 			return str_replace(['+','/','='],['-','_',''], base64_encode(json_encode($p)));
 		}
-
+		
 		protected function generateToken($userid, $uname, $fullname) {
 			$header = $this->generateHeader();
 			$payload = $this->generatePayload($userid, $uname, $fullname);

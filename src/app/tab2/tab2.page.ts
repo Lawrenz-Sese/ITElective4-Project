@@ -27,9 +27,10 @@ export class Tab2Page {
 
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.pullCheck();
   }
+
   pullCheck() {
     this.checkInfo.user_Id = localStorage.getItem("id");
     this.ds.sendApiRequest("check",localStorage.getItem("id")).subscribe(data => {
@@ -37,16 +38,54 @@ export class Tab2Page {
 
   })
 }
+checkinfo: any = {};
 
-clickBtn(){
-  Swal.fire({
-    icon: 'success',
-    title: 'Received Items!',
-    showConfirmButton: false,
-    backdrop: false,
-    timer: 1500
-  })
+async delCheck(e) {
+  this.checkinfo.check_id = e;
+
+      this.ds.sendApiRequest("delCheck", JSON.parse(JSON.stringify(this.checkinfo))).subscribe(data => {
+        this.pullCheck();
+      });
 }
+
+histInfo: any = {};
+
+addHist = (check) => {
+
+    
+  this.histInfo.check_id = check.check_id;
+  this.histInfo.check_pname = check.check_pname;
+  this.histInfo.check_pdesc = check.check_pdesc;
+  this.histInfo.check_pquant = check.check_pquant;
+
+  this.histInfo.check_code = check.check_code;
+  this.histInfo.user_id = localStorage.getItem("id");
+
+  Swal.fire({
+    title: 'Checkout Item?',
+    // icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes',
+    backdrop: false
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+  this.ds.sendApiRequest("addHist", JSON.parse(JSON.stringify(this.histInfo))).subscribe(data => {
+    // this.pullProducts();
+    this.pullCheck();
+    this.delCheck(this.histInfo.check_id);
+  });
+  // Swal.fire(
+  //   'Deleted!',
+  //   'Your file has been deleted.',
+  //   'success'
+  // )
+}
+})
+  // this.router.navigate(['/cart'])
+  }
 
 
 

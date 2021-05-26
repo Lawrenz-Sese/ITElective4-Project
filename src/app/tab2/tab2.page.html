@@ -74,7 +74,7 @@
           </ion-badge> -->
         </ion-col>
         <ion-col size="6" class="ion-text-right">
-          <ion-card-subtitle color="light"> {{ check.check_date }}</ion-card-subtitle>
+          <ion-card-subtitle color="light"> {{ check.check_date | date }}</ion-card-subtitle>
         </ion-col>
       </ion-row>
     </ion-card-header>
@@ -88,9 +88,11 @@
           <ion-card-subtitle style="font-size: 12px;">Total Expenses:P{{check.check_pquant + 50}}</ion-card-subtitle>
         </ion-col>
       </ion-row>
-      <ion-button expand="full" color="light" (click)="clickBtn()">
+      <ion-button expand="full" color="light" (click)="addHist(check)" >
         <span style="color: white;">Item Received</span>
       </ion-button>
+      <ion-button expand="full" color="light" (click)="delCheck(check.check_id)" class="hid">
+        </ion-button>
     </ion-card-content>
   </ion-card>
 

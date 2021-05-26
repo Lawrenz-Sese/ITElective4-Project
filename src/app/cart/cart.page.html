@@ -23,7 +23,7 @@
         <ion-button color="light" (click)="addCheck(cart)">
           <ion-icon name="checkbox" style="color: white;"></ion-icon>
         </ion-button>
-        <ion-button (click)="delCarts(cart.cart_id);" color="danger">
+        <ion-button (click)="delCheck(cart.cart_id);" color="danger">
           <ion-icon name="close-circle"></ion-icon>
         </ion-button>
       </ion-label>
@@ -40,13 +40,13 @@
       Cart Items:{{ cartCounter }} total product/s.<span slot="end"></span>
      </ion-item>
     <ion-item>
-      Total Cart Products: ₱{{ totalamount }}<span slot="end"></span>
+      Total Cart Products: ₱{{ totalamount | number }}<span slot="end"></span>
     </ion-item>
     <ion-item>
       Delivery Charge: ₱{{ delivery }}<span slot="end"></span>
      </ion-item>
     <ion-item>
-     Total Expenses: ₱{{ totalamounts }}<span slot="end"></span>
+     Total Expenses: ₱{{ totalamounts | number }}<span slot="end"></span>
     </ion-item>
     
   </ion-list>

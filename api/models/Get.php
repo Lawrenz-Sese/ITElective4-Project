@@ -60,12 +60,11 @@ class Get{
 		}
 		return $this->gm->sendPayload($payload, $remarks, $message, $res['code']);
 	}
-
+	// Pul check items
 	public function pullCheck ($user_Id) {
 
 		$sql = "SELECT * FROM tbl_checkout WHERE user_id = '$user_Id'";
 
-		
 		$res = $this->gm->generalQuery($sql, "No records found");
 		if ($res['code'] == 200) {
 			$payload = $res['data'];
@@ -78,7 +77,5 @@ class Get{
 		}
 		return $this->gm->sendPayload($payload, $remarks, $message, $res['code']);
 	}
-
-
 }
 ?>
