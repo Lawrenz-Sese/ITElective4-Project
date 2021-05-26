@@ -5,6 +5,8 @@ import { TemplateRef, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ModalController } from '@ionic/angular';
 import { CartCheckoutPage } from '../cart-checkout/cart-checkout.page';
+import { EventTriggerService } from '../service/eventTrigger/event-trigger.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -31,9 +33,14 @@ export class CartPage implements OnInit {
   checkInfo: any = {};
   code: string;
 
+  clickEvent: Subscription;
 
-  constructor( private router: Router, private ds: DataService, private modalCtrl: ModalController) {}
-
+  constructor( private ev: EventTriggerService, private router: Router, private ds: DataService, private modalCtrl: ModalController) {
+    this.clickEvent = this.ev.getClickEvent().subscribe(()=>{
+      this.pullCart();
+    })
+  }
+  
 
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
 
@@ -88,6 +95,7 @@ export class CartPage implements OnInit {
 
         this.ds.sendApiRequest("delCarts", JSON.parse(JSON.stringify(this.cartinfo))).subscribe(data => {
           this.pullCart();
+          this.ev.sendClickEvent();
         });
   }
 
@@ -130,13 +138,13 @@ export class CartPage implements OnInit {
       // this.pullProducts();
       this.pullCart();
       this.delCarts(this.checkInfo.cart_id);
+      this.ev.sendClickEvent();
       this.router.navigate(['/main/tabs/tab2']);
     });
-    Swal.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
+    Swal.fire({
+      icon: 'success',
+      text: 'Checkout successfuly!'
+    })
   }
 })
     this.router.navigate(['/cart'])

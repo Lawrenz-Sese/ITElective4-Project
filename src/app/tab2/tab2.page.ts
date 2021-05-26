@@ -3,6 +3,8 @@ import { DataService } from "src/app/service/data.service";
 import { Router } from '@angular/router';
 import { TemplateRef, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
+import { EventTriggerService } from '../service/eventTrigger/event-trigger.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -20,7 +22,13 @@ export class Tab2Page {
   check: any;
   user_Id: any;
 
-  constructor(private ds: DataService, public route: Router) { }
+  clickEvent: Subscription;
+
+  constructor(private ds: DataService, public route: Router, private ev: EventTriggerService) {
+    this.clickEvent = this.ev.getClickEvent().subscribe(()=>{
+      this.pullCheck();
+    })
+   }
   slidesOptions = {
     slidesPerView: 2
   }

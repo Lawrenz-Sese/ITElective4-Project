@@ -85,7 +85,7 @@
         <ion-col size="8">
           <ion-card-title> {{ check.check_code }}</ion-card-title>
           <ion-card-subtitle>{{ check.check_pname }} - {{ check.check_pdesc}}kg</ion-card-subtitle>
-          <ion-card-subtitle style="font-size: 12px;">Total Expenses:P{{check.check_pquant + 50}}</ion-card-subtitle>
+          <ion-card-subtitle style="font-size: 12px;">Total Expenses:{{check.check_pquant + 50 | currency:'PHP'}}</ion-card-subtitle>
         </ion-col>
       </ion-row>
       <ion-button expand="full" color="light" (click)="addHist(check)" >

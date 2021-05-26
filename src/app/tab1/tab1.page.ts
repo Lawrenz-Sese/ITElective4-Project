@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { DataService } from "src/app/service/data.service";
 import { TemplateRef, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
+import { EventTriggerService } from '../service/eventTrigger/event-trigger.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
@@ -33,9 +35,15 @@ export class Tab1Page implements OnInit {
   users:any;
   user_Id: any;
   cartinfo: any = {};
+
+  clickEvent: Subscription;
   
 
-  constructor(private router: Router, private ds: DataService) {}
+  constructor(private router: Router, private ds: DataService, private ev: EventTriggerService) {
+    this.clickEvent = this.ev.getClickEvent().subscribe(()=>{
+      this.pullCart();
+    })
+  }
 
 
 
