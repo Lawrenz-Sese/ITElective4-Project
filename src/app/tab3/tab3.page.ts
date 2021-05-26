@@ -44,12 +44,13 @@ export class Tab3Page {
 // Logout function, will remove the localStorage after confirmed. 
 logout(){
   Swal.fire({
-    title: 'Are you sure?',
+    title: 'Logout?',
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Proceed'
+    confirmButtonText: 'Yes',
+    backdrop: false
   }).then((result) => {
     if (result.isConfirmed) {
       localStorage.clear();

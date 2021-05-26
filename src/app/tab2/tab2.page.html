@@ -1,10 +1,5 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button style="margin-left: 10px;">
-        <ion-icon name="help-circle"></ion-icon>
-      </ion-button>
-    </ion-buttons>
     <ion-buttons slot="end">
       <ion-button routerLink="/main">
         <ion-icon name="person-circle"></ion-icon>
@@ -23,19 +18,80 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="slides ion-margin-bottom"></div>
+  <!-- <div class="slides ion-margin-bottom"></div> -->
 
-  <div class="container">
-    <ion-card *ngFor = " let x of cardItem ">
+  <!-- <div class="container">
+    <ion-card *ngFor = " let check of check ">
 
       <ion-card-header>
-       {{ x.title }}
+       Checkout Code: {{ check.check_code}}
+       <ion-card-subtitle style="font-style: italic; font-size: 12px;">
+         Date: {{ check.check_date }}
+       </ion-card-subtitle>
       </ion-card-header>
+      
     
       <ion-card-content>
-       {{ x.content }}
+        <ion-label>
+          Prouduct Name: {{ check.check_pname }} - {{ check.check_pdesc}}kg. 
+        </ion-label>
+
+        <ion-button expand="full">Item Received</ion-button>
       </ion-card-content>
     
     </ion-card>
-  </div>
+  </div> -->
+
+  <!-- <ion-card class="ion-padding ion-text-uppercase" *ngFor = " let check of check">
+    <ion-card-header>
+      <ion-card-title>{{ check.check_code }}</ion-card-title>
+      <ion-card-subtitle>{{ check.check_date }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <img src="../../assets/project-logo/logo1.png"/>
+
+      <ion-row class="ion-align-items-center ion-margin-top">
+        <ion-col size="4">
+          <h2 class="price">40 OMR</h2>
+        </ion-col>
+        <ion-col size="8">
+          <ion-button expand="block" shape="round" fill="outline" color="dark">
+            Add to Cart
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      
+    </ion-card-content>
+  </ion-card> -->
+
+  <ion-card *ngFor="let check of check">
+    <ion-card-header>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="6">
+          <!-- <ion-badge color="warning" mode="ios">
+            <ion-icon name="star"></ion-icon>
+            4.5
+          </ion-badge> -->
+        </ion-col>
+        <ion-col size="6" class="ion-text-right">
+          <ion-card-subtitle color="light"> {{ check.check_date }}</ion-card-subtitle>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- <ion-img src="../../assets/project-logo/logo1.png"></ion-img> -->
+
+      <ion-row>
+        <ion-col size="8">
+          <ion-card-title> {{ check.check_code }}</ion-card-title>
+          <ion-card-subtitle>{{ check.check_pname }} - {{ check.check_pdesc}}kg</ion-card-subtitle>
+          <ion-card-subtitle style="font-size: 12px;">Total Expenses:P{{check.check_pquant + 50}}</ion-card-subtitle>
+        </ion-col>
+      </ion-row>
+      <ion-button expand="full" color="light" (click)="clickBtn()">
+        <span style="color: white;">Item Received</span>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

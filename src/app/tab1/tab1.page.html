@@ -1,24 +1,33 @@
 <ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button style="margin-left: 10px;">
+        <ion-icon name="help-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/main">
+        <ion-icon name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
   <ion-item lines="none">
-    <ion-avatar slot="start" style="margin-top: 50px;">
-      <img src="../../assets/project-logo/logo1.png">
-    </ion-avatar>
-    <ion-label *ngFor=" let users of users" style="margin-top: 50px;">
-      <p>Hi, {{ users.user_names }}</p>
-      <h3>Enjoy your shopping!</h3>
+    <ion-label *ngFor = "let users of users">
+      <p>Hola, {{users.user_names}}</p>
+      <h3>Enjoy your shopping experience!</h3>
     </ion-label>
   </ion-item>
-
 </ion-header>
+
 
 
 <ion-content [fullscreen]="true">
 
   
-  <div class="slides ion-margin-bottom">
+  <!-- <div class="slides ion-margin-bottom">
 
 
-  </div>
+  </div> -->
 
 
 
@@ -30,6 +39,7 @@
   </ion-fab>
 
   <br>
+
   <div class="category-block">
     <ion-row no-padding class="category-banner">
       <ion-col style="text-align:center">

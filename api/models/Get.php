@@ -61,6 +61,23 @@ class Get{
 		return $this->gm->sendPayload($payload, $remarks, $message, $res['code']);
 	}
 
+	public function pullCheck ($user_Id) {
+
+		$sql = "SELECT * FROM tbl_checkout WHERE user_id = '$user_Id'";
+
+		
+		$res = $this->gm->generalQuery($sql, "No records found");
+		if ($res['code'] == 200) {
+			$payload = $res['data'];
+			$remarks = "success";
+			$message = "Successfully retrieved requested data";
+		} else {
+			$payload = null;
+			$remarks = "failed";
+			$message = $res['errmsg'];
+		}
+		return $this->gm->sendPayload($payload, $remarks, $message, $res['code']);
+	}
 
 
 }

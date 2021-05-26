@@ -137,3 +137,34 @@ ion-card {
     transform: none;
   }
 }
+
+
+// ion-content {
+//   --background: #f7fafc;
+//   ion-card {
+//     // margin: 100px auto;
+//     box-shadow: none;
+//     border-radius: 12px;
+//     width: 90%;
+//     box-shadow: 0px 3px 45px 0px rgba(0, 0, 0, 0.10);
+//     ion-card-title, .price {
+//       font-weight: 700;
+//       color: #222;
+//     }
+//   }
+// }
+
+ion-card {
+  padding: 6px;
+  box-shadow: none;
+  box-shadow: 0px 3px 45px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 7px;
+
+  ion-card-title{
+    font-family: 'Poppins',sans-serif;
+    font-weight: bold;
+  }
+  ion-card-subtitle{
+    font-size: 16px;
+  }
+}

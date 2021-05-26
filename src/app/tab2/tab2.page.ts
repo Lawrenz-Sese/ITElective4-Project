@@ -12,14 +12,13 @@ import Swal from 'sweetalert2';
 })
 export class Tab2Page {
 
-  cardItem: any = [
-    {title: 'Title 1', content: 'Content 1' },
-    {title: 'Title 2', content: 'Content 2' },
-    {title: 'Title 3', content: 'Content 3' }
-  ]
+
 
   alertCtrl: any;
   productinfo: any;
+  checkInfo: any = {};
+  check: any;
+  user_Id: any;
 
   constructor(private ds: DataService, public route: Router) { }
   slidesOptions = {
@@ -29,107 +28,26 @@ export class Tab2Page {
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
 
   ngOnInit(): void {
-    this.pullProducts();
+    this.pullCheck();
   }
+  pullCheck() {
+    this.checkInfo.user_Id = localStorage.getItem("id");
+    this.ds.sendApiRequest("check",localStorage.getItem("id")).subscribe(data => {
+    this.check = data.payload;
 
-  pullProducts() {
-    this.ds.sendApiRequest("products", null).subscribe(data => {
-      this.products = data.payload;
-    })
+  })
+}
 
-  }
+clickBtn(){
+  Swal.fire({
+    icon: 'success',
+    title: 'Received Items!',
+    showConfirmButton: false,
+    backdrop: false,
+    timer: 1500
+  })
+}
 
-  products: any;
-  prodID: any;
-  prodInfo: any = {};
-  pid: any;
-  pname: any;
-  pdesc: any;
-  pquant: any;
-
-  addProduct() {
-    this.prodInfo.pname = this.pname;
-    this.prodInfo.pdesc = this.pdesc;
-    this.prodInfo.pquant = this.pquant;
-
-    this.ds.sendApiRequest("addProduct",(this.prodInfo)).subscribe(data => {
-      this.pullProducts();
-    });
-
-    Swal.fire({
-      icon: 'success',
-      text: 'Successfuly Added!',
-    })
-
-    this.pname = '';
-    this.pdesc = '';
-    this.pquant = '';
-  }
-
-  // delProduct(e) {
-
-  //   Swal.fire({
-  //     title: 'Remove item?',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'Yes'
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       this.ds.sendApiRequest("delProduct", { "pid": e }).subscribe(data => {
-  //       });
-  //       Swal.fire(
-  //         'Deleted!',
-  //         'Item has been removed.',
-  //         'success'
-  //       )
-  //       this.pullProducts();
-  //     }
-  //   })
-  // }
-
-  async delProduct(e) {
-    this.prodInfo.pid = e;
-    Swal.fire({
-      title: 'Remove item?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.ds.sendApiRequest("delProduct", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
-          this.pullProducts();
-        });
-        Swal.fire(
-          'Deleted!',
-          'Item has been removed.',
-          'success'
-        )
-      }
-    })
-  }
-
-
-  editForm = (products) => {
-
-    this.prodInfo.pid1 = products.pid;
-    this.prodID = this.prodInfo.pid1;
-    this.prodInfo.pname1 = products.pname;
-    this.prodInfo.pdesc1 = products.pdesc;
-    this.prodInfo.pquant1 = products.pquant;
-
-    console.log(this.prodID);
-  }
-
-  editProduct(e) {
-    e.preventDefault();
-    this.ds.sendApiRequest("editProduct", JSON.parse(JSON.stringify(this.prodInfo, this.prodID))).subscribe(data => {
-      this.pullProducts();
-    });
-  }
 
 
 }

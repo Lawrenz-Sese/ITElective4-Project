@@ -49,6 +49,16 @@
 					}
                 break;
 
+				case 'check':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+                    if(count($req)>1) {
+                       
+						echo json_encode($get->pullCheck($d), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($get->pullCheck($d), JSON_PRETTY_PRINT);
+					}
+                break;
+
 				case 'addProduct':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($gm->insert("tbl_products",$d), JSON_PRETTY_PRINT);

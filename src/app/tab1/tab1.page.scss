@@ -254,6 +254,9 @@ ion-header {
     background: #287094;
     padding: 0 10px;
   }
+  ion-buttons {
+    margin-top: 30px;
+  }
 
   ion-toolbar {
     .bordered {
@@ -280,8 +283,20 @@ ion-header {
     }
   }
 }
+
+ion-content {
+  --background: #fff;
+
   .slides {
     background: #287094;
-    padding: 4px 10px 30px 10px;
+    padding: 4px 10px 20px 10px;
     border-radius: 0 0 20px 20px;
   }
+}
+
+ion-icon {
+  font-size: 24px;
+  // background-color: #fff;
+  color: #fff;
+  margin-left: -10px;
+}

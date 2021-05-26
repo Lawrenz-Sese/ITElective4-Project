@@ -29,6 +29,8 @@ export class RegisterPage implements OnInit {
     this.userInfo.user_email = this.user_email;
     this.userInfo.user_password = this.user_password;
 
+  
+
     this.ds.sendApiRequest("regUser", JSON.parse(JSON.stringify(this.userInfo))).subscribe(data => {
     });
     Swal.fire({

@@ -20,15 +20,16 @@
      <span hidden> {{ cart?.cart_id }}</span>
 
       <ion-label slot="end" text-right>
-        <ion-button color="light" (click)="openModal(cart);">
-          <ion-icon name="checkbox-outline" style="color: white;"></ion-icon>
+        <ion-button color="light" (click)="addCheck(cart)">
+          <ion-icon name="checkbox" style="color: white;"></ion-icon>
         </ion-button>
         <ion-button (click)="delCarts(cart.cart_id);" color="danger">
-          <ion-icon name="close-circle-outline"></ion-icon>
+          <ion-icon name="close-circle"></ion-icon>
         </ion-button>
       </ion-label>
 
     </ion-item>
+    <ion-button expand="full"  color="light"><span style="color: white; text-transform: uppercase;" (click)="addCheck(cart);">Check out all Items</span></ion-button>
   </ion-list>
 
   <ion-list>
@@ -49,5 +50,5 @@
     </ion-item>
     
   </ion-list>
-  <ion-button expand="full"  color="light"><span style="color: white; text-transform: uppercase;" (click)="openModal(cart);">Check out all Items</span></ion-button>
+ 
 </ion-content>

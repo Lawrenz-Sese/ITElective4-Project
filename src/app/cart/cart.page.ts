@@ -28,6 +28,8 @@ export class CartPage implements OnInit {
   cartCounter: number;
   user_Id: any;
   prodInfo: any;
+  checkInfo: any = {};
+  code: string;
 
 
   constructor( private router: Router, private ds: DataService, private modalCtrl: ModalController) {}
@@ -83,28 +85,58 @@ export class CartPage implements OnInit {
   // Function that will delete the item on cart list 
   async delCarts(e) {
     this.cartinfo.cart_id = e;
-    Swal.fire({
-      title: 'Remove item?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes'
-    }).then((result) => {
-      if (result.isConfirmed) {
+
         this.ds.sendApiRequest("delCarts", JSON.parse(JSON.stringify(this.cartinfo))).subscribe(data => {
           this.pullCart();
         });
-        Swal.fire(
-          'Deleted!',
-          'Item has been removed.',
-          'success'
-        )
-      }
-    })
   }
 
   openCheckout(){
     this.router.navigate(['/cart-checkout']);
   }
+
+ 
+  pname: any;
+  pdesc: any;
+  pquant: any;
+
+  addCheck = (cart) => {
+
+    
+    this.checkInfo.cart_id = cart.cart_id;
+    this.checkInfo.check_pname = cart.cart_pname;
+    this.checkInfo.check_pquant = cart.cart_pquant;
+    this.checkInfo.check_pdesc = cart.cart_pdesc;
+
+    var seq = (Math.floor(100000 + Math.random() * 900000)).toString().substring(1);
+    this.code = seq;
+    this.checkInfo.check_code = this.code;
+
+    this.checkInfo.user_id = localStorage.getItem("id");
+
+    Swal.fire({
+      title: 'Checkout Item?',
+      // icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes',
+      backdrop: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+    this.ds.sendApiRequest("addCheck", JSON.parse(JSON.stringify(this.checkInfo))).subscribe(data => {
+      // this.pullProducts();
+      this.pullCart();
+      this.delCarts(this.checkInfo.cart_id);
+    });
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  }
+})
+    this.router.navigate(['/cart'])
+    }
 }

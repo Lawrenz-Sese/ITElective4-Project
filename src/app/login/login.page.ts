@@ -29,12 +29,26 @@ export class LoginPage implements OnInit {
     this.userInfo.user_password = this.user_password;
 
    
-
+    // this.userInfo.user_email == '' && this.userInfo.user_password == ''
+    // Swal.fire({
+    //   icon: 'error',
+    //   text: 'Please insert your credentials!',
+    //   showConfirmButton: false,
+    //   timer: 1500
+    // })
+    
+    
     await this.ds.sendApiRequest("loginUser", this.userInfo).subscribe(res => {
 
-      if (res.payload == 0) {
+      if (res.payload == null) {
       
-        alert("Incorrect Credentials");
+      
+        Swal.fire({
+          icon: 'error',
+          text: 'Wrong Credentials!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       
       }
       else{
@@ -54,9 +68,5 @@ export class LoginPage implements OnInit {
         this.route.navigate(['/main']);
       }
     });
-
-    
   }
-
-
 }

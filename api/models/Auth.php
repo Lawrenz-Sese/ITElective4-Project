@@ -107,7 +107,7 @@
 			$payload = "";
 			$remarks = "";
 			$message = "";
-			$code = 403;
+			$code = 0;
 
 			$sql = "SELECT * FROM tbl_user WHERE user_email='$user_email' LIMIT 1";
 			$res = $this->gm->generalQuery($sql, "Incorrect username or password");

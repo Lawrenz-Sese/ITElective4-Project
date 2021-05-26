@@ -59,10 +59,12 @@ class Post{
         $payload = null;
         $remarks = "failed";
         $message = "Unable to retrieve data";
-  
+        $checkInfo = $data->checkInfo;
+    
 
-        $res = $this->gm->insert('tbl_checkout', $data);
+        $res = $this->gm->insert('tbl_checkout', $checkInfo);
 
+        
         if($res['code']==200) {
             $code = 200;
             $payload = $res['data'];
@@ -70,6 +72,7 @@ class Post{
             $message = "Successfully retrieved data";
             // return $this->get->pullCart(null);
         }
+        
         return $this->gm->sendPayload($payload, $remarks, $message, $code);
       
     }
