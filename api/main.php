@@ -46,6 +46,16 @@
 						echo json_encode($get->pullCart($d), JSON_PRETTY_PRINT);
 					}
                 break;
+				// Pull hist items function
+				case 'hist':
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+                    if(count($req)>1) {
+                       
+						echo json_encode($get->pullHist($d), JSON_PRETTY_PRINT);
+					} else {
+						echo json_encode($get->pullHist($d), JSON_PRETTY_PRINT);
+					}
+                break;
 				// Checkout function
 				case 'check':
 					$d = json_decode(base64_decode(file_get_contents("php://input")));

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Checkout History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list-header>
+    Checkout History: {{ histCounter }}
+  </ion-list-header>
+  <ion-list *ngFor = "let hist of hist ">
+ 
+    <ion-item text-wrap>
+        <!-- <ion-icon name="american-football" item-start></ion-icon> -->
+        <ion-avatar slot="start">
+          <img src="../../assets/project-logo/logo1.png">
+        </ion-avatar>
+        <ion-label>
+            <h2>{{ hist.check_code }}</h2>
+            <p>{{ hist.check_date | date }}</p>
+        </ion-label>
+        <ion-button color="light" item-end><span style="color: white;">View</span></ion-button>
+    </ion-item>
+</ion-list>
+
+  
+ 
+</ion-content>

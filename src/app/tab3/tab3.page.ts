@@ -28,7 +28,8 @@ export class Tab3Page {
 
   ngOnInit(): void {
     this.pullUsers();
-    this.pullCart()
+    this.pullCart();
+    this.pullHist();
   }
 
   //This function will pull the user information depends on the logged in account. 
@@ -77,5 +78,32 @@ pullCart() {
   }
 })
 }
+
+histinfo: any={};
+hist: any;
+label: any;
+histCounter: number;
+pullHist() {
+  this.histinfo.user_id = localStorage.getItem("id");
+  this.ds.sendApiRequest("hist",localStorage.getItem("id")).subscribe(data => {
+  this.hist = data.payload;
+
+  for (let i = 0; i <= this.hist.length; i++) {
+    this.histCounter = i;
+  }
+  if(this.histCounter >= 1 && this.histCounter <= 6  ){
+    this.label = 'Herald';
+  }
+  if(this.histCounter >= 7 && this.histCounter <= 12){
+    this.label = 'Archon';
+  }
+  if(this.histCounter >= 12 && this.histCounter <=30 ){
+    this.label = 'Legend';
+  }
+})
+
+
+}
+
 
 }

@@ -32,10 +32,15 @@ const routes: Routes = [
     loadChildren: () => import('./item-products/item-products.module').then( m => m.ItemProductsPageModule)
   },
   {
+    path: 'history',
+    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
-  }
+  },
+ 
 ];
 @NgModule({
   imports: [

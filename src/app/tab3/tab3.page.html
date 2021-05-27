@@ -16,14 +16,13 @@
     <ion-label *ngFor=" let users of users">
       <p>Hello,</p>
       <h3>{{ users.user_names }}</h3>
+      <ion-badge>{{ label }}</ion-badge>
     </ion-label>
   </ion-item>
 </ion-header>
 
 <ion-content>
   <div class="slides ion-margin-bottom"></div>
-  <br>
-
   <div class="container" *ngFor=" let users of users ">
     
     <p class="title">Profile Information</p>
