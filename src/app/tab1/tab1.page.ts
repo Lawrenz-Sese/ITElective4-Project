@@ -84,12 +84,20 @@ export class Tab1Page implements OnInit {
     })
   }
 
+  CValue: String;
+select: any;
+
+onChange(CValue){
+  this.select = CValue;
+  console.log(this.select);
+}
+
 // Add to cart function from pulled data, one item will insert per click.
   addToCart  = (products) => {
     
     this.prodInfo.cart_pname = products.pname;
-    this.prodInfo.cart_pquant = products.pquant;
-    this.prodInfo.cart_pdesc = products.pdesc;
+    this.prodInfo.cart_pquant = products.pquant * this.select;
+    this.prodInfo.cart_pdesc = products.pdesc * this.select;
     this.prodInfo.user_id = localStorage.getItem("id");
     
     this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {

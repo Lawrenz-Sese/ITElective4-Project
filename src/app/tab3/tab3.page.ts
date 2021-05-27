@@ -94,10 +94,10 @@ pullHist() {
   if(this.histCounter >= 1 && this.histCounter <= 6  ){
     this.label = 'Herald';
   }
-  if(this.histCounter >= 7 && this.histCounter <= 12){
+  if(this.histCounter >= 7 && this.histCounter <= 8){
     this.label = 'Archon';
   }
-  if(this.histCounter >= 12 && this.histCounter <=30 ){
+  if(this.histCounter >= 9 && this.histCounter <=30 ){
     this.label = 'Legend';
   }
 })

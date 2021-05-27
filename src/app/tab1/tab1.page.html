@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-button style="margin-left: 10px;">
+      <ion-button style="margin-left: 10px">
         <ion-icon name="help-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -12,63 +12,72 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-item lines="none">
-    <ion-label *ngFor = "let users of users">
+    <ion-label *ngFor="let users of users">
       <p>Hola, {{users.user_names}}</p>
       <h3>Enjoy your shopping experience!</h3>
     </ion-label>
   </ion-item>
 </ion-header>
 
-
-
 <ion-content [fullscreen]="true">
-
-  
   <!-- <div class="slides ion-margin-bottom">
 
 
   </div> -->
 
-
-
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="openCart()">
     <ion-fab-button color="light">
       <ion-badge color="light">{{ cartCounter }}</ion-badge>
-      <ion-icon name="cart" style="color: white;"></ion-icon>
+      <ion-icon name="cart" style="color: white"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <br>
+  <br />
 
   <div class="category-block">
     <ion-row no-padding class="category-banner">
-      <ion-col style="text-align:center">
-        List of Products
-      </ion-col>
+      <ion-col style="text-align: center"> List of Products </ion-col>
     </ion-row>
     <ion-slides [options]="sliderConfig">
       <ion-slide *ngFor="let products of products">
         <div>
           <ion-card>
-            <ion-card-header>
+            <ion-item lines="none">
+              <ion-select
+                placeholder="Kilo"
+                #C
+                (ionChange)="onChange(C.value)"
+                [(ngModel)]="kilo"
+                slot="end"
+              >
+                <ion-select-option value="3">3kg</ion-select-option>
+                <ion-select-option value="2">2kg</ion-select-option>
+                <ion-select-option value="1">1kg</ion-select-option>
+                <ion-select-option value=".50">1/2kg</ion-select-option>
+                <ion-select-option value=".25">1/4kg</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-card-header style="margin-top: -25px">
               <ion-card-title>
-                <p class="product-name">
-                  {{ products.pname }}
-                </p>
-                <hr>
+                <p class="product-name">{{ products.pname }}</p>
+                <hr />
                 <span class="product-desc">
                   ₱{{ products.pquant }} per {{ products.pdesc}}kg.
                 </span>
               </ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <img src="./assets/project-logo/logo1.png" alt="" class="src">
-              <ion-button (click)="addToCart(products); addCart($event);" color="light">
-                <span class="action">1KG</span>
+              <img src="./assets/project-logo/logo1.png" alt="" class="src" />
+              <ion-button
+                (click)="addToCart(products); addCart($event);"
+                color="light"
+                display="expand"
+              >
+                <span class="action">ADD TO CART</span>
               </ion-button>
-              <ion-button (click)="addToCart1(products); addCart($event);" color="light">
+              <!-- <ion-button (click)="addToCart1(products); addCart($event);" color="light">
                 <span class="action">1/2KG</span>
-              </ion-button>
+              </ion-button> -->
             </ion-card-content>
           </ion-card>
         </div>
