@@ -20,11 +20,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- <div class="slides ion-margin-bottom">
-
-
-  </div> -->
-
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="openCart()">
     <ion-fab-button color="light">
       <ion-badge color="light">{{ cartCounter }}</ion-badge>
@@ -36,15 +31,17 @@
 
   <div class="category-block">
     <ion-row no-padding class="category-banner">
-      <ion-col style="text-align: center"> List of Products </ion-col>
+      <ion-col style="text-align: left"> Fresh Products </ion-col>
     </ion-row>
     <ion-slides [options]="sliderConfig">
       <ion-slide *ngFor="let products of products">
         <div>
           <ion-card>
             <ion-item lines="none">
+              <ion-label>
+                ₱{{ products.pquant }}-{{ products.pdesc}}kg.</ion-label
+              >
               <ion-select
-                placeholder="Kilo"
                 #C
                 (ionChange)="onChange(C.value)"
                 [(ngModel)]="kilo"
@@ -61,23 +58,64 @@
               <ion-card-title>
                 <p class="product-name">{{ products.pname }}</p>
                 <hr />
-                <span class="product-desc">
-                  ₱{{ products.pquant }} per {{ products.pdesc}}kg.
-                </span>
               </ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <img src="./assets/project-logo/logo1.png" alt="" class="src" />
+              <img src="{{products.img}}" alt="" class="src" />
               <ion-button
-                (click)="addToCart(products); addCart($event);"
+                (click)="addToCart(products)"
                 color="light"
                 display="expand"
               >
+                <ion-icon name="cart-outline"></ion-icon> &nbsp;
                 <span class="action">ADD TO CART</span>
               </ion-button>
-              <!-- <ion-button (click)="addToCart1(products); addCart($event);" color="light">
-                <span class="action">1/2KG</span>
-              </ion-button> -->
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div class="category-block">
+    <ion-row no-padding class="category-banner">
+      <ion-col style="text-align: left"> Frozen Products </ion-col>
+    </ion-row>
+    <ion-slides [options]="sliderConfig">
+      <ion-slide *ngFor="let frozen of frozen">
+        <div>
+          <ion-card>
+            <ion-item lines="none">
+              <ion-label> ₱{{ frozen.pquant }}-{{ frozen.pdesc}}kg.</ion-label>
+              <ion-select
+                #C
+                (ionChange)="onChange(C.value)"
+                [(ngModel)]="kilo"
+                slot="end"
+              >
+                <ion-select-option value="3">3kg</ion-select-option>
+                <ion-select-option value="2">2kg</ion-select-option>
+                <ion-select-option value="1">1kg</ion-select-option>
+                <ion-select-option value=".50">1/2kg</ion-select-option>
+                <ion-select-option value=".25">1/4kg</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-card-header style="margin-top: -25px">
+              <ion-card-title>
+                <p class="product-name">{{ frozen.pname }}</p>
+                <hr />
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <img src="{{frozen.img}}" alt="" class="src" />
+              <ion-button
+                (click)="addToCart1(frozen)"
+                color="light"
+                display="expand"
+              >
+                <ion-icon name="cart-outline"></ion-icon> &nbsp;
+                <span class="action">ADD TO CART</span>
+              </ion-button>
             </ion-card-content>
           </ion-card>
         </div>

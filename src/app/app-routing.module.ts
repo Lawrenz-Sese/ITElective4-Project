@@ -36,10 +36,15 @@ const routes: Routes = [
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
   {
+    path: 'welcome',
+    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+  },
+  {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'welcome',
     pathMatch: 'full'
   },
+
  
 ];
 @NgModule({

@@ -1,36 +1,53 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="light">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-button
+      style="color: white;"
+        class="backbtn"
+        routerLink="/main/tabs/tab1"
+        routerDirection="back"
+      >
+      <ion-icon name="arrow-back-outline" style="color: white;"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>My Cart</ion-title>
+    <ion-label style="color: white; font-size: 20px;">Cart</ion-label>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification" routerLink="/main/tabs/tab2" >
+        <ion-icon name="basket" style="color: white; font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!--
-    These are the items from cart table, display with ion list.
-  -->
-  <ion-list>
-    <ion-list-header>
-      Cart List
-    </ion-list-header>
-    <ion-item *ngFor="let cart of cart" lines="inset">
-     {{ cart.cart_pdesc }}kg of {{ cart.cart_pname }} -  {{ cart.cart_pquant | currency:'PHP' }}
-     <span hidden> {{ cart?.cart_id }}</span>
 
-      <ion-label slot="end" text-right>
-        <ion-button color="light" (click)="addCheck(cart)">
-          <ion-icon name="checkbox" style="color: white;"></ion-icon>
-        </ion-button>
-        <ion-button (click)="delCarts(cart.cart_id);" color="danger">
-          <ion-icon name="close-circle"></ion-icon>
-        </ion-button>
-      </ion-label>
+  <div class="order-items">
+    
+    <ion-card *ngFor="let cart of cart">
+      <ion-card-content>
 
-    </ion-item>
-    <ion-button expand="full"  color="light"><span style="color: white; text-transform: uppercase;" (click)="addCheck(cart);">Check out all Items</span></ion-button>
-  </ion-list>
+        <div class="item-img">
+          <img src='../../assets/project-logo/logo1.png' />
+        </div>
+
+        <div class="item-info">
+          <p>{{ cart.cart_pname }}</p>
+          <p>{{ cart.cart_pdesc}}kg.</p>
+          <p>{{ cart.cart_pquant | currency: 'PHP'}}</p>
+
+          <div class="btns" style="display: flex;">
+          <ion-button class="main-button" color="light" (click)="addCheck(cart)">
+            <ion-icon name="checkbox" style="color: white;"></ion-icon>
+          </ion-button>
+          <ion-button  class="main-button" color="danger" (click)="delCarts(cart.cart_id);">
+            <ion-icon name="trash-outline" style="color: white;"></ion-icon>
+          </ion-button>
+        </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
   <ion-list>
     <ion-list-header>
@@ -50,5 +67,5 @@
     </ion-item>
     
   </ion-list>
- 
+  <ion-button expand="full"  color="light"><span style="color: white; text-transform: uppercase;" (click)="addCheck(cart);">Check out all Items</span></ion-button>
 </ion-content>

@@ -25,7 +25,7 @@ export class Tab1Page implements OnInit {
   productsCounter: number;
   cartCounter: number;
   userInfo: any = {};
-  products: any;
+  // products: any;
   prodID: any;
   prodInfo: any = {};
   pid: any;
@@ -50,10 +50,23 @@ export class Tab1Page implements OnInit {
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
   
   ngOnInit(){
-    this.pullProducts();
+    // this.pullProducts();
     this.pullUsers();
     this.pullCart();
   }
+
+  products: any = [
+    {pname: 'Galunggong', pdesc: 1 , pquant:  140, img: '../../assets/products/galunggong.png'},
+    {pname: 'Porkchop', pdesc: 1 , pquant:  320, img: '../../assets/products/porkchop.png'},
+    {pname: 'Chicken', pdesc: 1 , pquant:  160, img: '../../assets/products/chicken.png'}
+
+  ]
+
+  frozen: any = [
+    {pname: 'Hotdog', pdesc: 1 , pquant:  180, img: '../../assets/products/hotdog.png'},
+    {pname: 'Ham', pdesc: 1 , pquant:  100, img: '../../assets/products/ham.png'},
+    {pname: 'Longganisa', pdesc: 1 , pquant:  120, img: '../../assets/products/longganisa.png'}
+  ]
 
   // Pull cart items depends on user logged in account. 
   pullCart() {
@@ -78,15 +91,14 @@ export class Tab1Page implements OnInit {
 
 
   //Function that will pull products items
-  pullProducts(){
-    this.ds.sendApiRequest("products", null).subscribe(data => {
-    this.products = data.payload;
-    })
-  }
+  // pullProducts(){
+  //   this.ds.sendApiRequest("products", null).subscribe(data => {
+  //   this.products = data.payload;
+  //   })
+  // }
 
-  CValue: String;
+CValue: String;
 select: any;
-
 onChange(CValue){
   this.select = CValue;
   console.log(this.select);
@@ -101,7 +113,7 @@ onChange(CValue){
     this.prodInfo.user_id = localStorage.getItem("id");
     
     this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
-      this.pullProducts();
+      // this.pullProducts();
       this.pullCart();
     });
 
@@ -116,15 +128,15 @@ onChange(CValue){
   }
 
 
-  addToCart1  = (products) => {
+  addToCart1  = (frozen) => {
     
-    this.prodInfo.cart_pname = products.pname;
-    this.prodInfo.cart_pquant = products.pquant / 2;
-    this.prodInfo.cart_pdesc = products.pdesc /2;
+    this.prodInfo.cart_pname = frozen.pname;
+    this.prodInfo.cart_pquant = frozen.pquant * this.select;
+    this.prodInfo.cart_pdesc = frozen.pdesc * this.select;
     this.prodInfo.user_id = localStorage.getItem("id");
     
     this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
-      this.pullProducts();
+      // this.pullProducts();
       this.pullCart();
     });
 

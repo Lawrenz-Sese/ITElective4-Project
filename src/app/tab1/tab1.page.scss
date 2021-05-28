@@ -228,7 +228,8 @@ h1 {
 }
 
 .src {
-  width: 70%;
+  width: 100px;
+  height: 100px;
 }
 
 .action {
@@ -285,7 +286,7 @@ ion-header {
 }
 
 ion-content {
-  --background: #fff;
+  --background: #fdfcfa;
 
   .slides {
     background: #287094;
