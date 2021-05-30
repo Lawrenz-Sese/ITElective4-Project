@@ -3,6 +3,8 @@ import { DataService } from "src/app/service/data.service";
 import { TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { EventTriggerService } from '../service/eventTrigger/event-trigger.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tab3',
@@ -12,7 +14,7 @@ import Swal from 'sweetalert2';
 export class Tab3Page {
 
   //variables
-
+  clickEvent: Subscription;
   users: any;
   userInfo: any = {};
   user_id: any;
@@ -22,7 +24,12 @@ export class Tab3Page {
   user_Id: any
   dates: any;
 
-  constructor( private ds: DataService, public route: Router ) {}
+  constructor( private ds: DataService, public route: Router, private ev: EventTriggerService ) {
+    this.clickEvent = this.ev.getClickEvent().subscribe(()=>{
+      this.pullHist();
+      this.pullCart();
+    })
+  }
 
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
 

@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
+  
 
   // Configuration of slider
   sliderConfig = {

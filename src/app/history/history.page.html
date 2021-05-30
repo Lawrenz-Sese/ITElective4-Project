@@ -22,7 +22,7 @@
             <h2>{{ hist.check_code }}</h2>
             <p>{{ hist.check_date | date }}</p>
         </ion-label>
-        <ion-button color="light" item-end><span style="color: white;">View</span></ion-button>
+        <ion-button color="light" item-end><span style="color: white;" (click)="openModal(hist)">View</span></ion-button>
     </ion-item>
 </ion-list>
 

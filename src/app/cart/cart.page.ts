@@ -80,9 +80,15 @@ export class CartPage implements OnInit {
     let total = 0;
     for (var i = 0; i < this.cart.length; i++) {
         if (this.cart[i].cart_pquant) {
+          // get total amount of the products inside the cart items
             total += this.cart[i].cart_pquant;
             this.totalamount = total;
+          
+            //total expenses 
             this.totalamounts = Math.round(this.delivery + total);
+
+            // delivery charge  = 50 
+
             this.delivery = this.cart.length * 3 + 50;
         }   
     }

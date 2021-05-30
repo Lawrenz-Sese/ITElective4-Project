@@ -6,6 +6,9 @@ import Swal from 'sweetalert2';
 import { EventTriggerService } from '../service/eventTrigger/event-trigger.service';
 import { Subscription } from 'rxjs';
 
+import { CartCheckoutPage } from '../cart-checkout/cart-checkout.page';
+import { ModalController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab2',
@@ -24,7 +27,7 @@ export class Tab2Page {
 
   clickEvent: Subscription;
 
-  constructor(private ds: DataService, public route: Router, private ev: EventTriggerService) {
+  constructor(private ds: DataService, public route: Router, private ev: EventTriggerService, private modalCtrl: ModalController) {
     this.clickEvent = this.ev.getClickEvent().subscribe(()=>{
       this.pullCheck();
     })
@@ -32,6 +35,7 @@ export class Tab2Page {
   slidesOptions = {
     slidesPerView: 2
   }
+
 
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
 
@@ -84,6 +88,7 @@ addHist = (check) => {
     // this.pullProducts();
     this.pullCheck();
     this.delCheck(this.histInfo.check_id);
+    this.ev.sendClickEvent();
   });
   // Swal.fire(
   //   'Deleted!',
