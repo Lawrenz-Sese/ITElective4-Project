@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
+.btns{
+  --background:#287094;
+}
 ion-header {
   ion-toolbar,
   ion-item {
@@ -9,6 +12,7 @@ ion-header {
   }
   ion-buttons {
     margin-top: 30px;
+  
   }
 
   ion-toolbar {
@@ -55,12 +59,14 @@ ion-icon {
 }
 
 ion-card {
+  --background: white;
   -webkit-animation-name: bounceInDown;
   animation-name: bounceInDown;
   -webkit-animation-duration: 2s;
   animation-duration: 2s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+
 }
 @-webkit-keyframes bounceInDown {
   0%,
@@ -163,6 +169,7 @@ ion-card {
   ion-card-title{
     font-family: 'Poppins',sans-serif;
     font-weight: bold;
+    color: #000;
   }
   ion-card-subtitle{
     font-size: 16px;

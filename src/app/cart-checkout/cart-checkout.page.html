@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar style="--background: white; color: black;">
     <ion-buttons slot="start">
       <ion-button (click)="dismissModal()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
     </ion-buttons>
@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>
+  <ion-list style="background-color: white;" >
+    <ion-list-header style="--background: white; color: black;">
       Product Description
     </ion-list-header>
     <ion-item >
@@ -27,7 +27,7 @@
     <ion-item>
       <ion-label>Product Price: {{ quant }}</ion-label>
     </ion-item>
-<ion-button expand="full"  color="light"><span style="color: white;">Checkout</span></ion-button>    
+<ion-button expand="full"  style="background-color: #287094;"><span style="color: white;">Rate Service</span></ion-button>    
   </ion-list>
   
 

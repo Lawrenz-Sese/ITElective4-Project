@@ -22,8 +22,8 @@
 <ion-content [fullscreen]="true">
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="openCart()">
-    <ion-fab-button color="light">
-      <ion-badge color="light">{{ cartCounter }}</ion-badge>
+    <ion-fab-button color="primary">
+      <ion-badge color="primary">{{ cartCounter }}</ion-badge>
       <ion-icon name="cart" style="color: white"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -38,8 +38,8 @@
       <ion-slide *ngFor="let products of products">
         <div>
           <ion-card>
-            <ion-item lines="none">
-              <ion-label>
+            <ion-item class="item" lines="none">
+              <ion-label class="textlabel">
                 ₱{{ products.pquant }}-{{ products.pdesc}}kg.</ion-label
               >
               <ion-select
@@ -65,7 +65,7 @@
               <img src="{{products.img}}" alt="" class="src" />
               <ion-button
                 (click)="addToCart(products)"
-                color="light"
+                
                 display="expand"
               >
                 <ion-icon name="cart-outline"></ion-icon> &nbsp;
@@ -86,8 +86,8 @@
       <ion-slide *ngFor="let frozen of frozen">
         <div>
           <ion-card>
-            <ion-item lines="none">
-              <ion-label> ₱{{ frozen.pquant }}-{{ frozen.pdesc}}kg.</ion-label>
+            <ion-item class="item"lines="none">
+              <ion-label class="textlabel"> ₱{{ frozen.pquant }}-{{ frozen.pdesc}}kg.</ion-label>
               <ion-select
                 #C
                 (ionChange)="onChange(C.value)"
@@ -111,7 +111,7 @@
               <img src="{{frozen.img}}" alt="" class="src" />
               <ion-button
                 (click)="addToCart1(frozen)"
-                color="light"
+                
                 display="expand"
               >
                 <ion-icon name="cart-outline"></ion-icon> &nbsp;

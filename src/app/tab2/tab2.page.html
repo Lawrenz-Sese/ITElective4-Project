@@ -88,7 +88,7 @@
           <ion-card-subtitle style="font-size: 12px;">Total Expenses:{{check.check_pquant + 50 | currency:'PHP'}}</ion-card-subtitle>
         </ion-col>
       </ion-row>
-      <ion-button expand="full" color="light" (click)="addHist(check)" >
+      <ion-button expand="full" class="btns" (click)="addHist(check)" >
         <span style="color: white;">Item Received</span>
       </ion-button>
       <ion-button expand="full" color="light" (click)="delCheck(check.check_id)" class="hid">

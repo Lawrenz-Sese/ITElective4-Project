@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="light">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button
       style="color: white;"
@@ -37,7 +37,7 @@
           <p>{{ cart.cart_pquant | currency: 'PHP'}}</p>
 
           <div class="btns" style="display: flex;">
-          <ion-button class="main-button" color="light" (click)="addCheck(cart)">
+          <ion-button class="main-button" (click)="addCheck(cart)">
             <ion-icon name="checkbox" style="color: white;"></ion-icon>
           </ion-button>
           <ion-button  class="main-button" color="danger" (click)="delCarts(cart.cart_id);">
@@ -49,7 +49,7 @@
     </ion-card>
   </div>
 
-  <ion-list>
+  <ion-list style="background-color: white;">
     <ion-list-header>
       Expenses Overview
     </ion-list-header>
@@ -67,5 +67,5 @@
     </ion-item>
     
   </ion-list>
-  <ion-button expand="full"  color="light"><span style="color: white; text-transform: uppercase;" (click)="addCheck(cart);">Check out all Items</span></ion-button>
+  <ion-button expand="full" style="--background:#287094;"><span style="color: white; text-transform: uppercase;" (click)="addCheck(cart);">Check out all Items</span></ion-button>
 </ion-content>

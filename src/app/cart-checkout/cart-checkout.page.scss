@@ -1,7 +1,10 @@
 h1 {
     font-size: 12px;
 }
-
+ion-item{
+  --background: white;
+  color: black;
+}
 ion-content{
     -webkit-animation-name: zoomInUp;
   animation-name: zoomInUp;
@@ -9,6 +12,7 @@ ion-content{
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+  --background: white;
   }
   @-webkit-keyframes zoomInUp {
   0% {

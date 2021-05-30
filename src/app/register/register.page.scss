@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+ion-content{
+  --background:#287094;
+}
+
+ion-item{
+  --background: white;
+}
+
+
 ion-toolbar {
   --background: black;
 }
@@ -191,7 +200,7 @@ ion-toolbar {
 
     ion-input {
       font-size: 0.8rem;
-      color: #7b7b7b;
+      color: black;
       font-family: 'Poppins', sans-serif;
     }
   }

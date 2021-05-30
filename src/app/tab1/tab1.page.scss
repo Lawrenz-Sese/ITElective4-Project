@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 ion-card {
+  --background:white;
   -webkit-animation-name: bounceInLeft;
   animation-name: bounceInLeft;
   -webkit-animation-duration: 3s;
@@ -196,6 +197,7 @@ ion-fab {
   font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
+  color: black;
 }
 
 .product-desc {
@@ -237,6 +239,7 @@ h1 {
   color: #fff;
   text-transform: uppercase;
   margin-left: 5px;
+  --background: #287094;
 }
 
 hr {
@@ -314,4 +317,12 @@ ion-select {
 
   justify-content: right;
   text-align: right;
+}
+
+.item{
+  --background:white;
+}
+
+.textlabel{
+  color: black;
 }

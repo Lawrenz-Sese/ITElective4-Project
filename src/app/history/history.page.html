@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar style="--background: white; color: black;">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
@@ -8,10 +8,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-list-header>
+  <ion-list-header style="color: black">
     Checkout History: {{ histCounter }}
   </ion-list-header>
-  <ion-list *ngFor = "let hist of hist ">
+  <ion-list style="background-color: white;" *ngFor = "let hist of hist ">
  
     <ion-item text-wrap>
         <!-- <ion-icon name="american-football" item-start></ion-icon> -->
@@ -22,7 +22,7 @@
             <h2>{{ hist.check_code }}</h2>
             <p>{{ hist.check_date | date }}</p>
         </ion-label>
-        <ion-button color="light" item-end><span style="color: white;" (click)="openModal(hist)">View</span></ion-button>
+        <ion-button style="background-color: #287094;" item-end><span style="color: white;" (click)="openModal(hist)">View</span></ion-button>
     </ion-item>
 </ion-list>
 

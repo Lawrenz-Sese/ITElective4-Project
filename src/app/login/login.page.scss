@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
+ion-item{
+  --background: white;
+}
 ion-toolbar {
   --background: black;
 }
+.form-input{
+  --background: white;
+}
 
+ion-content{
+  --background:#287094;
+}
 .src{
   width: 90%;
   margin: auto;
