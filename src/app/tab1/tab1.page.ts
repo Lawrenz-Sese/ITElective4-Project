@@ -123,7 +123,7 @@ onChange(CValue){
       text: 'Successfuly Added!',
     })
 
-    this.router.navigate(['/cart'])
+    // this.router.navigate(['/cart'])
 
     console.log(this.prodInfo);
   }
@@ -146,7 +146,7 @@ onChange(CValue){
       text: 'Successfuly Added!',
     })
 
-    this.router.navigate(['/cart'])
+    // this.router.navigate(['/cart'])
 
     console.log(this.prodInfo);
   }

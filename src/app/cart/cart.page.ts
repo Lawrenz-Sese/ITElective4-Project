@@ -145,7 +145,6 @@ export class CartPage implements OnInit {
       this.pullCart();
       this.delCarts(this.checkInfo.cart_id);
       this.ev.sendClickEvent();
-      this.router.navigate(['/main/tabs/tab2']);
     });
     Swal.fire({
       icon: 'success',
