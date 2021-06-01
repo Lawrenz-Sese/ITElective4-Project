@@ -22,8 +22,8 @@
 <ion-content [fullscreen]="true">
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="openCart()">
-    <ion-fab-button color="primary">
-      <ion-badge color="primary">{{ cartCounter }}</ion-badge>
+    <ion-fab-button class="btns">
+      <ion-badge class="btns">{{ cartCounter }}</ion-badge>
       <ion-icon name="cart" style="color: white"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -65,7 +65,7 @@
               <img src="{{products.img}}" alt="" class="src" />
               <ion-button
                 (click)="addToCart(products)"
-                
+                class="btns"
                 display="expand"
               >
                 <ion-icon name="cart-outline"></ion-icon> &nbsp;
@@ -111,7 +111,7 @@
               <img src="{{frozen.img}}" alt="" class="src" />
               <ion-button
                 (click)="addToCart1(frozen)"
-                
+                class="btns"
                 display="expand"
               >
                 <ion-icon name="cart-outline"></ion-icon> &nbsp;
