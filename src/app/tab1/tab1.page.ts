@@ -51,23 +51,11 @@ export class Tab1Page implements OnInit {
   @ViewChild('content') callAPIDialog: TemplateRef<any>;
   
   ngOnInit(){
-    // this.pullProducts();
+    this.pullProducts();
     this.pullUsers();
     this.pullCart();
   }
 
-  products: any = [
-    {pname: 'Galunggong', pdesc: 1 , pquant:  140, img: '../../assets/products/galunggong.png'},
-    {pname: 'Porkchop', pdesc: 1 , pquant:  320, img: '../../assets/products/porkchop.png'},
-    {pname: 'Chicken', pdesc: 1 , pquant:  160, img: '../../assets/products/chicken.png'}
-
-  ]
-
-  frozen: any = [
-    {pname: 'Hotdog', pdesc: 1 , pquant:  180, img: '../../assets/products/hotdog.png'},
-    {pname: 'Ham', pdesc: 1 , pquant:  100, img: '../../assets/products/ham.png'},
-    {pname: 'Longganisa', pdesc: 1 , pquant:  120, img: '../../assets/products/longganisa.png'}
-  ]
 
   // Pull cart items depends on user logged in account. 
   pullCart() {
@@ -90,13 +78,14 @@ export class Tab1Page implements OnInit {
   })
 }
 
+products: any;
 
-  //Function that will pull products items
-  // pullProducts(){
-  //   this.ds.sendApiRequest("products", null).subscribe(data => {
-  //   this.products = data.payload;
-  //   })
-  // }
+  // Function that will pull products items
+  pullProducts(){
+    this.ds.sendApiRequest("products", null).subscribe(data => {
+    this.products = data.payload;
+    })
+  }
 
 CValue: String;
 select: any;

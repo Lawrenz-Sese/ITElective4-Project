@@ -30,6 +30,18 @@ export class ItemProductsPage implements OnInit {
 
   }
 
+  imgSrc: string = "../../../assets/logo1.jpeg";
+  onUploadHandler(e:any){
+    if(e.target.files){
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (event:any) =>{
+        this.imgSrc = event.target.result;
+        console.log(this.imgSrc);
+      }
+    }
+  }
+
   products: any;
   prodID: any;
   prodInfo: any = {};
@@ -40,12 +52,14 @@ export class ItemProductsPage implements OnInit {
 
   addProduct() {
     this.prodInfo.pname = this.pname;
-    this.prodInfo.pdesc = this.pdesc;
     this.prodInfo.pquant = this.pquant;
+    this.prodInfo.image = this.imgSrc;
 
     this.ds.sendApiRequest("addProduct", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
       this.pullProducts();
     });
+
+    console.log(this.prodInfo);
 
     Swal.fire({
       icon: 'success',
@@ -53,8 +67,8 @@ export class ItemProductsPage implements OnInit {
     })
 
     this.pname = '';
-    this.pdesc = '';
     this.pquant = '';
+    this.imgSrc = '';
   }
 
   // delProduct(e) {

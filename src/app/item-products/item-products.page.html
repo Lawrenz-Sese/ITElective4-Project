@@ -12,11 +12,19 @@
     <label for="pname">PRODUCT NAME</label>
     <input type="text" id="pname" name="pname" [(ngModel)]="pname">
 
-    <label for="pdesc">PRODUCT DESCRIPTION</label>
-    <input type="text" id="pdesc" name="pdesc" [(ngModel)]="pdesc">
-
     <label for="pquant">QUANTITY</label>
     <input type="number" id="pquant" name="pquant" [(ngModel)]="pquant">
+
+    <div class="img-container">
+      <img
+        class="image-container"
+        [src]="imgSrc"
+        alt="img"
+        style="width: 100px; height: 100px; display: none"
+      />
+      <input type="file" (change)="onUploadHandler($event)"/>
+    </div>
+   
 
     <button (click)="addProduct();">ADD PRODUCT</button>
 
@@ -46,9 +54,7 @@
         <p>
           PRODUCT DESCRIPTION: <span> {{ products.pdesc }}</span>
         </p>
-        <p>
-          PRODUCT QUANTITY: <span> {{ products.pquant }}</span>
-        </p>
+          <img src="{{products.image}}" alt="">
         <button (click)="editForm(products);">EDIT</button>
         <button (click)="delProduct(products.pid);">DELETE</button>
       </div>
