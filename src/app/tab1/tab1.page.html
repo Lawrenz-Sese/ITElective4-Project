@@ -63,35 +63,9 @@
 
 
   <div class="item-container ion-padding">
-    <!-- <div class="card-container" *ngFor = "let products of products">
-      <div class="top">
-        <img src="{{products.image}}" alt="">
-      </div>
-      <div class="bottom">
-        <div class="info">
-        <p>{{products.pname}}
-          <span>{{products.pquant}}</span>
-        </p>
-      </div>
-      </div>
-      <div class="action">
-        <div class="left">
-        <ion-icon name="eye-outline" style="color: black;"></ion-icon>
-        <p>View Items</p>
-        </div>
-        <div class="vl"></div>
-        <div class="right">
-           <ion-icon name="cart-outline" style="color: black;"></ion-icon>
-          <p>View Items</p>
-        </div>
-      </div>
-    </div> -->
 
-    <div class="sample-card">
-
-    </div>
-    <div class="sample-card">
-      
+    <div class="sample-card" *ngFor = "let products of products" (click)="openModal(products)">
+      <img src="{{products.image}}" alt="" >
     </div>
 
   </div>

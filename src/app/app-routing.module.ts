@@ -40,10 +40,16 @@ const routes: Routes = [
     loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
   },
   {
+    path: 'view',
+    loadChildren: () => import('./view/view.module').then( m => m.ViewPageModule)
+  },
+  {
     path: '',
     redirectTo: 'welcome',
     pathMatch: 'full'
   },
+
+
 
  
 ];

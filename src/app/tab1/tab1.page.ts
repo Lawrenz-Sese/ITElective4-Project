@@ -5,6 +5,8 @@ import { TemplateRef, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import { EventTriggerService } from '../service/eventTrigger/event-trigger.service';
 import { Subscription } from 'rxjs';
+import { ModalController } from '@ionic/angular';
+import { ViewPage } from '../view/view.page';
 
 @Component({
   selector: 'app-tab1',
@@ -40,10 +42,23 @@ export class Tab1Page implements OnInit {
   clickEvent: Subscription;
   
 
-  constructor(private router: Router, private ds: DataService, private ev: EventTriggerService) {
+  constructor( private modalCtrl: ModalController, private router: Router, private ds: DataService, private ev: EventTriggerService) {
     this.clickEvent = this.ev.getClickEvent().subscribe(()=>{
       this.pullCart();
     })
+  }
+
+  async openModal(products) {
+    const modal = await this.modalCtrl.create({
+      component: ViewPage,
+      componentProps: {
+        name: products.pname,
+        price: products.pquant,
+        image: products.image,
+
+      }
+    });
+    await modal.present();
   }
 
 
@@ -85,59 +100,6 @@ products: any;
     this.ds.sendApiRequest("products", null).subscribe(data => {
     this.products = data.payload;
     })
-  }
-
-CValue: String;
-select: any;
-onChange(CValue){
-  this.select = CValue;
-  console.log(this.select);
-}
-
-// Add to cart function from pulled data, one item will insert per click.
-  addToCart  = (products) => {
-    
-    this.prodInfo.cart_pname = products.pname;
-    this.prodInfo.cart_pquant = products.pquant * this.select;
-    this.prodInfo.cart_pdesc = products.pdesc * this.select;
-    this.prodInfo.user_id = localStorage.getItem("id");
-    
-    this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
-      // this.pullProducts();
-      this.pullCart();
-    });
-
-    Swal.fire({
-      icon: 'success',
-      text: 'Successfuly Added!',
-    })
-
-    // this.router.navigate(['/cart'])
-
-    console.log(this.prodInfo);
-  }
-
-
-  addToCart1  = (frozen) => {
-    
-    this.prodInfo.cart_pname = frozen.pname;
-    this.prodInfo.cart_pquant = frozen.pquant * this.select;
-    this.prodInfo.cart_pdesc = frozen.pdesc * this.select;
-    this.prodInfo.user_id = localStorage.getItem("id");
-    
-    this.ds.sendApiRequest("addCart", JSON.parse(JSON.stringify(this.prodInfo))).subscribe(data => {
-      // this.pullProducts();
-      this.pullCart();
-    });
-
-    Swal.fire({
-      icon: 'success',
-      text: 'Successfuly Added!',
-    })
-
-    // this.router.navigate(['/cart'])
-
-    console.log(this.prodInfo);
   }
 
   openCart(){

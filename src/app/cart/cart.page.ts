@@ -120,7 +120,7 @@ export class CartPage implements OnInit {
     this.checkInfo.cart_id = cart.cart_id;
     this.checkInfo.check_pname = cart.cart_pname;
     this.checkInfo.check_pquant = cart.cart_pquant;
-    this.checkInfo.check_pdesc = cart.cart_pdesc;
+    this.checkInfo.image = cart.image;
 
     // Generate a 5 digit random number
     var seq = (Math.floor(100000 + Math.random() * 900000)).toString().substring(1);

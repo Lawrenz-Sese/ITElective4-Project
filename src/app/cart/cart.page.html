@@ -28,12 +28,11 @@
       <ion-card-content>
 
         <div class="item-img">
-          <img src='../../assets/project-logo/logo1.png' />
+          <img src="{{cart.image}}" />
         </div>
 
         <div class="item-info">
           <p>{{ cart.cart_pname }}</p>
-          <p>{{ cart.cart_pdesc}}kg.</p>
           <p>{{ cart.cart_pquant | currency: 'PHP'}}</p>
 
           <div class="btns" style="display: flex;">
