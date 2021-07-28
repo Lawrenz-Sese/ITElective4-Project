@@ -13,7 +13,7 @@
   </ion-toolbar>
   <ion-item lines="none">
     <ion-label *ngFor="let users of users">
-      <p>Hola, {{users.user_names}}</p>
+      <p>Hello, {{users.user_names}}</p>
       <h3>Enjoy your shopping experience!</h3>
     </ion-label>
   </ion-item>
@@ -67,7 +67,7 @@
     <div class="sample-card" *ngFor = "let products of products" (click)="openModal(products)">
       <img src="{{products.image}}" alt="" >
     </div>
-
+<br><br><br>
   </div>
 
 </ion-content>

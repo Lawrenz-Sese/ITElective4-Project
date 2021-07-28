@@ -11,7 +11,7 @@
   </ion-toolbar>
   <ion-item lines="none">
     <ion-label>
-      <p>Hola!</p>
+      <p>Hello!</p>
       <h3>Checkout Information</h3>
     </ion-label>
   </ion-item>
@@ -85,12 +85,12 @@
         <ion-col size="8">
           <img src="{{check.image}}" alt="">
           <ion-card-title> {{ check.check_code }}</ion-card-title>
-          <ion-card-subtitle>{{ check.check_pname }} - {{ check.check_pdesc}}kg</ion-card-subtitle>
+          <ion-card-subtitle>{{ check.check_pname }} - {{ check.check_pdesc}}</ion-card-subtitle>
           <ion-card-subtitle style="font-size: 12px;">Total Expenses:{{check.check_pquant + 50 | currency:'PHP'}}</ion-card-subtitle>
         </ion-col>
       </ion-row>
       <ion-button expand="full" class="btns" (click)="addHist(check)" >
-        <span style="color: white;">Item Received</span>
+        <span style="color: #d9c39e;">Item Received</span>
       </ion-button>
       <ion-button expand="full" color="light" (click)="delCheck(check.check_id)" class="hid">
         </ion-button>

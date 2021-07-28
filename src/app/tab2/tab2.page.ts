@@ -74,7 +74,7 @@ addHist = (check) => {
   this.histInfo.user_id = localStorage.getItem("id");
 
   Swal.fire({
-    title: 'Checkout Item?',
+    title: 'Item Received?',
     // icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',

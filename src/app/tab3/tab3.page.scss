@@ -3,8 +3,8 @@
 ion-header {
   ion-toolbar,
   ion-item {
-    --background: #287094;
-    background: #287094;
+    --background: #353148;
+    background: #353148;
     padding: 0 10px;
   }
   ion-buttons {
@@ -41,7 +41,7 @@ ion-content {
   --background: #fff;
 
   .slides {
-    background: #287094;
+    background: #353148;
     padding: 4px 10px 20px 10px;
     border-radius: 0 0 20px 20px;
   }
@@ -101,7 +101,7 @@ p {
   border: 0;
   height: 1px;
   background: #1e5799;
-  background: linear-gradient(to right, #287094 70%, #7db9e8 30%);
+  background: linear-gradient(to right, #353148 70%, #7db9e8 30%);
 }
 
 ion-icon {

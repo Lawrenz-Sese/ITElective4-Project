@@ -8,9 +8,13 @@ ion-toolbar {
 .form-input{
   --background: white;
 }
+img{
+  top: -30px;
+  left: 4%;
+}
 
 ion-content{
-  --background:#287094;
+  --background:#353148;
 }
 .src{
   width: 90%;
@@ -174,7 +178,7 @@ ion-content{
     h1 {
       font-size: 1.2rem;
       font-weight: bolder;
-      color: #287094;
+      color: #353148;
       font-family: 'Poppins', sans-serif;
     }
 
@@ -185,7 +189,7 @@ ion-content{
     }
 
     span {
-      color: #287094;
+      color: #353148;
       cursor: pointer;
     }
   }
@@ -204,7 +208,7 @@ ion-content{
       z-index: 10000;
       font-size: 1.5rem;
       left: 5px;
-      color: #287094;
+      color: #353148;
     }
 
     .icon2 {
@@ -213,7 +217,7 @@ ion-content{
       z-index: 10000;
       font-size: 1.5rem;
       left: 5px;
-      color: #287094;
+      color: #353148;
     }
 
     ion-label {
@@ -242,7 +246,7 @@ ion-content{
 }
 
 .login-button {
-  --background: #287094;
+  --background: #353148;
   width: 100%;
   font-family: 'Poppins',sans-serif;
 }

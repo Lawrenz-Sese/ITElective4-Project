@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 ion-content{
-  --background:#287094;
+  --background:#353148;
 }
 
 ion-item{
@@ -11,6 +11,11 @@ ion-item{
 
 ion-toolbar {
   --background: black;
+}
+
+img{
+  top: -30px;
+  left: 4%;
 }
 
 .src{
@@ -173,7 +178,7 @@ ion-toolbar {
     h1 {
       font-size: 1.2rem;
       font-weight: bolder;
-      color: #287094;
+      color: #353148;
       font-family: 'Poppins', sans-serif;
     }
 
@@ -184,7 +189,7 @@ ion-toolbar {
     }
 
     span {
-      color: #287094;
+      color: #353148;
       cursor: pointer;
     }
   }
@@ -212,7 +217,7 @@ ion-toolbar {
 }
 
 .login-button {
-  --background: #287094;
+  --background: #353148;
   width: 100%;
   font-family: 'Poppins',sans-serif;
 }

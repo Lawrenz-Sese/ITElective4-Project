@@ -1,14 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>view</ion-title>
+    <br><br>
+    <ion-label style="color: #d9c393; font-size: 30px;">VIEW PRODUCT</ion-label>
+
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<p>{{name}}</p>
-<p>{{price}}</p>
+
+<div class="vl"></div>
 <img src="{{image}}" alt="">
 
-<button (click)="dismissModal()">This is back button</button>
-<button (click)="addToCart()">Add to Cart</button>
+
+<div class="try" style='float:left; width:30% '>
+  <p>{{name}}</p>
+</div>
+
+<div class="try" style='float:left; width:30%; margin-left:90px'>
+  <p>PHP{{price}}.00</p>
+</div>
+
+
+<ion-button class="btn" (click)="dismissModal()"><ion-icon name="backspace"></ion-icon><span style="color: #d9c39e;">BACK BUTTON</span></ion-button>
+<ion-button class="btn1" (click)="addToCart()"><ion-icon name="cart"></ion-icon><span style="color: #d9c39e;">ADD TO CART</span></ion-button>
 </ion-content>

@@ -15,7 +15,7 @@
 
 
 
-	define("DBASE", "db_markit");
+	define("DBASE", "db_tempus");
 	define("USER", "root");
 	define("PW", "");
 	define("SERVER", "localhost");
