@@ -1,19 +1,25 @@
 .btn{
     position: fixed;
-    bottom: 3%;
+    bottom: 1%;
     left: 5%;
     --background:#353148;
 }
 
 .btn1{
     position: fixed;
-    bottom: 3%;
+    bottom: 1%;
     right: 5%;
     --background:#353148;
 }
 .try {
-    margin-top: 30px;
+    margin-top: 50px;
     margin-left: 40px;
+  }
+
+.try1 {
+    
+    margin-left: 50px;
+    height:120px;width:120px;border:0px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;
   }
 
 p {
@@ -23,10 +29,10 @@ p {
 
 .vl {
         border-left: 4px solid rgb(53, 49, 72);
-        height: 50px;
+        height: 100px;
         position: absolute;
         left: 50%;
-        top: 72%;
+        top: 69%;
 }
 
 ion-toolbar{
