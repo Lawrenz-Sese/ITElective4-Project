@@ -52,9 +52,10 @@ export class Tab1Page implements OnInit {
     const modal = await this.modalCtrl.create({
       component: ViewPage,
       componentProps: {
-        name: products.pname,
-        price: products.pquant,
-        image: products.image,
+        name: products.prod_name,
+        price: products.prod_price,
+        image: products.prod_img,
+        desc: products.prod_description
 
       }
     });

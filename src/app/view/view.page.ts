@@ -13,6 +13,8 @@ export class ViewPage implements OnInit {
   @Input() name: any;
   @Input() price: any;
   @Input() image: any;
+  @Input() desc: any;
+
 
 
 
